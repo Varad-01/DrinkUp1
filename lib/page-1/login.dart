@@ -231,7 +231,7 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       GestureDetector(
-                        // signupherX9 (1:95)
+                        // signupher (1:95)
                         child: Text(
                           'Sign Up Here',
                           style: TextStyle(
