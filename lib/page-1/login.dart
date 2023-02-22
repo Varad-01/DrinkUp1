@@ -88,7 +88,7 @@ class _LoginState extends State<Login> {
                   ),
                 ),
                 Container(
-                  // emailtnX ()
+                  // e
                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 305*fem, 9*fem),
                   child: Text(
                     'Email',
