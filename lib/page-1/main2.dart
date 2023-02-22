@@ -1,0 +1,94 @@
+import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:myapp/page-1/home-screen-02.dart';
+import 'package:myapp/page-1/home-screen-03.dart';
+
+import 'home-screen-01.dart';
+
+class main2 extends StatefulWidget {
+  const main2({Key? key}) : super(key: key);
+
+  @override
+  State<main2> createState() => _main2State();
+}
+
+class _main2State extends State<main2> {
+
+  int _curentIndex=0;
+  Color changeColor1=Color.fromRGBO(23, 155, 255,1);
+
+  final screens=[
+    Scene(),
+    Scene2(),
+    Scene3(),
+  ];
+  bool check=false;
+
+
+  @override
+  Widget build(BuildContext context) {
+
+    Color navColor=Colors.black;
+    Color tabColor=Colors.grey.shade800;
+
+    return Scaffold(
+      body: screens[_curentIndex],
+
+      bottomNavigationBar: Container(
+        color: Color.fromRGBO(23, 155, 255,1),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
+          child: GNav(
+            onTabChange: (index)=> setState(()=> _curentIndex=index),
+            backgroundColor: Color.fromRGBO(23, 155, 255,1),
+            selectedIndex: _curentIndex,
+            color: Colors.white,
+            activeColor: Colors.white,
+            tabBackgroundColor: Colors.blue.shade800,
+            gap: 8,
+            iconSize: 28,
+            padding: EdgeInsets.all(12.0),
+
+            tabs: [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.bar_chart_outlined,
+                text: 'Progress',
+              ),
+              GButton(
+                icon: Icons.settings,
+                text: 'Settings',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+// onTap: (index)=> setState(()=> _curentIndex=index),
+// currentIndex: _curentIndex,
+// iconSize: 34,
+//
+// items: [
+// BottomNavigationBarItem(
+// icon: Icon(Icons.home_outlined),
+// label: 'home'
+// ),
+// BottomNavigationBarItem(
+// icon: Icon(Icons.bar_chart_outlined),
+// label: 'home',
+// ),
+// BottomNavigationBarItem(
+// icon: Icon(Icons.settings),
+// label: 'home'
+// ),
+//
+// ],
+
+
