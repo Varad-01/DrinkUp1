@@ -13,15 +13,23 @@ import 'package:myapp/page-1/starting-page-1.dart';
 import 'package:myapp/page-1/welcome-page.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/home-screen-01.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MyApp());
+
+void main() async {
+	WidgetsFlutterBinding.ensureInitialized();
+	await Firebase.initializeApp();
+	runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 	return MaterialApp(
+
 		title: 'Flutter',
-		initialRoute: '/welcomePage',
+
+		initialRoute: '/main2',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),

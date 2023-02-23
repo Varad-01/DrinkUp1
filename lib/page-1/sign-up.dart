@@ -120,11 +120,11 @@ class _SignUpState extends State<SignUp> {
                   child: TextFormField(
                     keyboardType: TextInputType.name,
                     controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     _isTextFieldEmpty = value.isEmpty;
+                    //   });
+                    // },
                     decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Full Name',
@@ -166,11 +166,11 @@ class _SignUpState extends State<SignUp> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     _isTextFieldEmpty = value.isEmpty;
+                    //   });
+                    // },
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'example@gmail.com',
@@ -212,11 +212,11 @@ class _SignUpState extends State<SignUp> {
                   child: TextFormField(
                     keyboardType: TextInputType.visiblePassword,
                     controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     _isTextFieldEmpty = value.isEmpty;
+                    //   });
+                    // },
                     obscureText: true,
                     obscuringCharacter: "*",
                     decoration: const InputDecoration(
@@ -244,8 +244,14 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextButton(
                     onPressed: (){
-                      if (_isTextFieldEmpty){ToastMsg('Please fill above details');}
-                      else{Navigator.pushNamed(context, '/startPage1');}
+                      // if (_isTextFieldEmpty)
+                      // {
+                      //   // ToastMsg('Please fill above details');
+                      // }
+                      // else{
+                      //   Navigator.pushNamed(context, '/startPage1');
+                      // }
+                      Navigator.pushNamed(context, '/startPage1');
                     },
                     // style: ,
                     child: Text(

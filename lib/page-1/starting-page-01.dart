@@ -103,13 +103,13 @@ class _StartPage2State extends State<StartPage2> {
                     border: Border.all(color: const Color(0xff179bff)),
                   ),
                   child: TextFormField(
-                    keyboardType: TextInputType.text,
+                    // keyboardType: TextInputType.text,
                     controller: _controllerGender,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     _isTextFieldEmpty = value.isEmpty;
+                    //   });
+                    // },
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'gender',
@@ -148,13 +148,13 @@ class _StartPage2State extends State<StartPage2> {
                     border: Border.all(color: const Color(0xff179bff)),
                   ),
                   child: TextFormField(
-                    keyboardType: TextInputType.number,
+                    // keyboardType: TextInputType.number,
                     controller: _controllerWeight,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    // onChanged: (value) {
+                    //   setState(() {
+                    //     _isTextFieldEmpty = value.isEmpty;
+                    //   });
+                    // },
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       hintText: 'weight',
@@ -531,20 +531,36 @@ class _StartPage2State extends State<StartPage2> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            if (_isTextFieldEmpty){
-                              ToastMsg('Please fill above details');
-                            }
-                            else{
-                              String converter=_controllerWeight.text;
-                              double weight=double.parse(converter);
+                            // if (_isTextFieldEmpty){
+                            //   ToastMsg('Please fill above details');
+                            // }
+                            // else{
+                            //
+                            // }
+                            // String converter=_controllerWeight.text;
+                            // final user=UserModel(
+                            //   gender: _controllerGender.text.trim(),
+                            //   weight: _controllerWeight.text.trim(),
+                            // );
+                            // UserRepository.instance.createUser(user);
+
+                            // Navigator.pushNamed(context, '/main2');
+
+                            try{
                               final user=UserModel(
                                 gender: _controllerGender.text.trim(),
-                                weight: weight,
+                                weight: _controllerWeight.text.trim(),
                               );
-                              UserRepository.instance.createUser(user);
-
-                              Navigator.pushNamed(context, '/main2');
+                              UserRepository userResp = UserRepository();
+                              userResp.createUser(user);
+                              ToastMsg("Data Added");
                             }
+                            catch(e){
+                              print("The error is: $e");
+                            }
+                            // UserRepository.instance.createUser(user);
+
+                            Navigator.pushNamed(context, '/main2');
                           },
                           // style: ,
                           child: Text(

@@ -8,7 +8,7 @@ class UserModel
 {
   final String? id;
   final String gender;
-  final double weight;
+  final String weight;
 
   const UserModel({
     this.id,
