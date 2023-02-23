@@ -44,6 +44,9 @@ dependencies:
   google_nav_bar: ^5.0.6
   fluttertoast: ^8.0.8
   firebase_core: ^2.6.1
+  cloud_firestore: ^4.4.3
+  snackbar: ^1.0.2
+
 
 dev_dependencies:
   flutter_test:

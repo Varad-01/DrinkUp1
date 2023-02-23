@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/Database_chirayu/UserRepository.dart';
+import 'package:myapp/page-1/Database_chirayu/userModel.dart';
 import 'package:myapp/utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -27,7 +29,9 @@ class _StartPage2State extends State<StartPage2> {
   
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
+    TextEditingController _controllerGender = TextEditingController();
+    TextEditingController _controllerWeight = TextEditingController();
+
     bool _isTextFieldEmpty = true;
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -100,7 +104,7 @@ class _StartPage2State extends State<StartPage2> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.text,
-                    controller: _controller,
+                    controller: _controllerGender,
                     onChanged: (value) {
                       setState(() {
                         _isTextFieldEmpty = value.isEmpty;
@@ -145,7 +149,7 @@ class _StartPage2State extends State<StartPage2> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: _controller,
+                    controller: _controllerWeight,
                     onChanged: (value) {
                       setState(() {
                         _isTextFieldEmpty = value.isEmpty;
@@ -516,21 +520,6 @@ class _StartPage2State extends State<StartPage2> {
                   height: 50*fem,
                   child: Stack(
                     children: [
-                      // Positioned(
-                      //   // uparrowtxb (1:135)
-                      //   left: 234*fem,
-                      //   top: 20*fem,
-                      //   child: Align(
-                      //     child: SizedBox(
-                      //       width: 38*fem,
-                      //       height: 20*fem,
-                      //       child: Image.asset(
-                      //         'assets/page-1/images/up-arrow.png',
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
                       Container(
                         // signupbutton4su (1:92)
                         // margin: EdgeInsets.fromLTRB(45*fem, 0*fem, 45*fem, 0*fem),
@@ -542,8 +531,20 @@ class _StartPage2State extends State<StartPage2> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            if (_isTextFieldEmpty){ToastMsg('Please fill above details');}
-                            else{Navigator.pushNamed(context, '/main2');}
+                            if (_isTextFieldEmpty){
+                              ToastMsg('Please fill above details');
+                            }
+                            else{
+                              String converter=_controllerWeight.text;
+                              double weight=double.parse(converter);
+                              final user=UserModel(
+                                gender: _controllerGender.text.trim(),
+                                weight: weight,
+                              );
+                              UserRepository.instance.createUser(user);
+
+                              Navigator.pushNamed(context, '/main2');
+                            }
                           },
                           // style: ,
                           child: Text(
