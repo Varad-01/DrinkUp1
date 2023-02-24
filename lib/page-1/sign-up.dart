@@ -328,6 +328,7 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future createUser({required String name, required String email}) async{
+
     final docUser= FirebaseFirestore.instance.collection('users').doc();
 
     final json = {
