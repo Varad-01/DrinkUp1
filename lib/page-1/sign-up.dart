@@ -1,14 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   @override
   State<SignUp> createState() => _SignUpState();
 }
+TextEditingController _emailController = TextEditingController();
+TextEditingController _nameController = TextEditingController();
+TextEditingController _passwordController = TextEditingController();
 
 class _SignUpState extends State<SignUp> {
   @override
@@ -119,11 +124,17 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.name,
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
+                    controller: _nameController,
+                    autovalidateMode:
+                    AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      RegExp regExp = new RegExp('[a-zA-Z]');
+                      if (value!.length == 0) {
+                        return 'Please enter a name';
+                      } else if (!regExp.hasMatch(value)) {
+                        return 'Please enter a valid name';
+                      }
+                      return null;
                     },
                     decoration: const InputDecoration(
                         border: InputBorder.none,
@@ -165,11 +176,17 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
+                    controller: _emailController,
+                    autovalidateMode:
+                    AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      RegExp regExp = new RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                      if (value!.length == 0) {
+                        return 'Please enter a name';
+                      } else if (!regExp.hasMatch(value)) {
+                        return 'Please enter a valid name';
+                      }
+                      return null;
                     },
                     decoration: const InputDecoration(
                       border: InputBorder.none,
@@ -211,12 +228,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.visiblePassword,
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
+                    controller: _passwordController,
                     obscureText: true,
                     obscuringCharacter: "*",
                     decoration: const InputDecoration(
@@ -244,8 +256,11 @@ class _SignUpState extends State<SignUp> {
                   ),
                   child: TextButton(
                     onPressed: (){
-                      if (_isTextFieldEmpty){ToastMsg('Please fill above details');}
-                      else{Navigator.pushNamed(context, '/startPage1');}
+                      final name = _nameController.text;
+                      final email = _emailController.text;
+
+                      createUser(name: name, email: email);
+                      // Navigator.pushNamed(context, '/startPage1');
                     },
                     // style: ,
                     child: Text(
@@ -297,9 +312,8 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         onTap: (){
-                          setState(() {
                             Navigator.pushNamed(context, '/login');
-                          });
+
                         },
                       ),
                     ],
@@ -311,5 +325,21 @@ class _SignUpState extends State<SignUp> {
               ),
       ),
     );
+  }
+
+  Future createUser({required String name, required String email}) async{
+    final docUser= FirebaseFirestore.instance.collection('users').doc();
+
+    final json = {
+      'name' : name,
+      'email' : email,
+      'Time' : DateTime.now(),
+    };
+    try {
+      await docUser.set(json);
+    }on FirebaseException catch(e)
+    {
+      print(e);
+    }
   }
 }
