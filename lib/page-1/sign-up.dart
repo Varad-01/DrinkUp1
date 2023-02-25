@@ -81,7 +81,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Positioned(
-                        // bigshoestorso38F (1:85)
+                        // bigshoestorso38
                         left: 0*fem,
                         top: 0*fem,
                         child: Align(
