@@ -338,6 +338,7 @@ class _SignUpState extends State<SignUp> {
     };
     try {
       await docUser.set(json);
+      Navigator.pushNamed(context, '/startPage1');
     }on FirebaseException catch(e)
     {
       print(e);
