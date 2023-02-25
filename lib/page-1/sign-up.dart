@@ -259,8 +259,8 @@ class _SignUpState extends State<SignUp> {
                       final name = _nameController.text;
                       final email = _emailController.text;
 
-                      updateUser(name: name, email: email);
-                      // createUser(name: name, email: email);
+                      createUser(name: name, email: email);
+                      // updateUser(name: name, email: email);
                       // Navigator.pushNamed(context, '/startPage1');
                     },
                     // style: ,
@@ -330,7 +330,7 @@ class _SignUpState extends State<SignUp> {
 
   Future createUser({required String name, required String email}) async{
 
-    final docUser= FirebaseFirestore.instance.collection('users').doc();
+    final docUser= FirebaseFirestore.instance.collection('users').doc('U');
 
     final json = {
       'name' : name,
