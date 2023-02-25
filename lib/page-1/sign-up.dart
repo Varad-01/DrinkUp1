@@ -259,7 +259,8 @@ class _SignUpState extends State<SignUp> {
                       final name = _nameController.text;
                       final email = _emailController.text;
 
-                      createUser(name: name, email: email);
+                      updateUser(name: name, email: email);
+                      // createUser(name: name, email: email);
                       // Navigator.pushNamed(context, '/startPage1');
                     },
                     // style: ,
@@ -343,5 +344,18 @@ class _SignUpState extends State<SignUp> {
     {
       print(e);
     }
+  }
+
+  Future<void> updateUser({required String name, required String email}) {
+    CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+
+    return docUser
+        .doc('ABC')
+        .update({'name': name,'email': email,'Time': DateTime.now()})
+        .then((value) {
+          print("User Updated");
+          Navigator.pushNamed(context, '/startPage1');
+        })
+        .catchError((error) => print("Failed to update user: $error"));
   }
 }
