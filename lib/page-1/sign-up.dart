@@ -151,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 Container(
-                  // emailavo (1:98)
+                  // emailavo (1:
                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 289*fem, 9*fem),
                   child: Text(
                     'Email',
