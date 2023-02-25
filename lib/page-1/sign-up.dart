@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
         child: SizedBox(
           width: double.infinity,
           child: Container(
-            // signup59V (1:82)
+            // signup59V
             padding: EdgeInsets.fromLTRB(0*fem, 100*fem, 0*fem, 81*fem),
             width: double.infinity,
             decoration: BoxDecoration (
