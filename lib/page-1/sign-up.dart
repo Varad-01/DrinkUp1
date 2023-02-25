@@ -181,9 +181,9 @@ class _SignUpState extends State<SignUp> {
                       validator: (value) {
                         RegExp regExp = new RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
                         if (value!.length == 0) {
-                          return 'Please enter a name';
+                          return 'Please enter a email';
                         } else if (!regExp.hasMatch(value)) {
-                          return 'Please enter a valid name';
+                          return 'Please enter a valid email';
                         }
                         return null;
                       },

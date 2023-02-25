@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -13,7 +14,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     bool _isTextFieldEmpty = true;
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -103,33 +105,40 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                   // frame2aQT (1:62)
-                  margin: EdgeInsets.fromLTRB(28*fem, 0*fem, 44*fem, 41*fem),
-                  padding: EdgeInsets.fromLTRB(10*fem, 13*fem, 10*fem, 12*fem),
-                  width: double.infinity,
-                  height: 48,
-                  decoration: BoxDecoration (
-                    border: Border.all(color: const Color(0xff0a0f25)),
-                    borderRadius: BorderRadius.circular(15*fem),
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'example@gmail.com',
-                      contentPadding: EdgeInsets.symmetric(vertical: 7.5),
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Satoshi',
-                      fontSize: 22*ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2368751102*ffem/fem,
-                      color: const Color(0xff6e7180),
+                  margin: EdgeInsets.fromLTRB(18*fem, 0*fem, 44*fem, 0*fem),
+                  width: 322*fem,
+                  height: 75,
+                  child: SizedBox(
+                    width: 322*fem,
+                    height: 75,
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        RegExp regExp = new RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                        if (value!.length == 0) {
+                          return 'Please enter a email';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15*fem),
+                        ),
+                        hintText: 'example@gmail.com',
+                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                      ),
+                      style: TextStyle(
+                        fontFamily: 'Satoshi',
+                        fontSize: 22*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2368751102*ffem/fem,
+                        color: const Color(0xff6e7180),
+                      ),
                     ),
                   ),
                 ),
@@ -149,35 +158,39 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                   // frame3t3m (1:51)
-                  margin: EdgeInsets.fromLTRB(28*fem, 0*fem, 44*fem, 74*fem),
-                  padding: EdgeInsets.fromLTRB(10*fem, 13*fem, 10*fem, 12*fem),
-                  width: double.infinity,
-                  height: 48,
-                  decoration: BoxDecoration (
-                    border: Border.all(color: const Color(0xff0a0f25)),
-                    borderRadius: BorderRadius.circular(15*fem),
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: _controller,
-                    onChanged: (value) {
-                      setState(() {
-                        _isTextFieldEmpty = value.isEmpty;
-                      });
-                    },
-                    obscureText: true,
-                    obscuringCharacter: "*",
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                      contentPadding: EdgeInsets.symmetric(vertical: 7.5),
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Satoshi',
-                      fontSize: 22*ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2368751102*ffem/fem,
-                      color: const Color(0xff6e7180),
+                  margin: EdgeInsets.fromLTRB(18*fem, 0*fem, 44*fem, 74*fem),
+                  width: 322*fem,
+                  height: 75,
+                  child: SizedBox(
+                    width: 322*fem,
+                    height: 75,
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: _passwordController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value!.length == 0) {
+                          return 'Please enter a password';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      obscuringCharacter: "*",
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15*fem),
+                        ),
+                        hintText: 'Password',
+                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                      ),
+                      style: TextStyle(
+                        fontFamily: 'Satoshi',
+                        fontSize: 22*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2368751102*ffem/fem,
+                        color: const Color(0xff6e7180),
+                      ),
                     ),
                   ),
                 ),
@@ -192,8 +205,9 @@ class _LoginState extends State<Login> {
                   ),
                   child: TextButton(
                     onPressed: (){
-                      if (_isTextFieldEmpty){ToastMsg('Please fill above details');}
-                      else{Navigator.pushNamed(context, '/main2');}
+                      final email = _emailController.text;
+
+                      createUser(email: email);
                     },
                     // style: ,
                     child: Text(
@@ -259,5 +273,20 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+  Future createUser({required String email}) async{
+
+    final docUser= FirebaseFirestore.instance.collection('users').doc('U');
+
+    final json = {
+      'email' : email,
+    };
+    try {
+      await docUser.set(json);
+      Navigator.pushNamed(context, '/main2');
+    }on FirebaseException catch(e)
+    {
+      print(e);
+    }
   }
 }
