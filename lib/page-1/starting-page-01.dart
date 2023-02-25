@@ -590,8 +590,12 @@ class _StartPage2State extends State<StartPage2> {
                         child: TextButton(
                           onPressed: (){
                             final weight = _weightController.text;
-                            // Navigator.pushNamed(context, '/main2');
-                            createUser(weight: weight,);
+                            if(weight.length==0)
+                            {
+                              Fluttertoast.showToast(msg: "Please enter your details");
+                            }
+                            else
+                            createUser(weight: weight);
                           },
                           // style: ,
                           child: Text(

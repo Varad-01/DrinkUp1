@@ -206,7 +206,12 @@ class _LoginState extends State<Login> {
                   child: TextButton(
                     onPressed: (){
                       final email = _emailController.text;
-
+                      final password = _passwordController.text;
+                      if(email.length==0 && password.length==0)
+                      {
+                        Fluttertoast.showToast(msg: "Please enter your details");
+                      }
+                      else
                       createUser(email: email);
                     },
                     // style: ,

@@ -272,7 +272,16 @@ class _SignUpState extends State<SignUp> {
                     onPressed: (){
                       final name = _nameController.text;
                       final email = _emailController.text;
-
+                      final password = _passwordController.text;
+                      if(email.length==0 && password.length==0)
+                      {
+                        Fluttertoast.showToast(msg: "Please enter your details");
+                      }
+                      else if(name.length==0)
+                      {
+                        Fluttertoast.showToast(msg: "Please enter your details");
+                      }
+                      else
                       createUser(name: name, email: email);
                       // updateUser(name: name, email: email);
                       // Navigator.pushNamed(context, '/startPage1');
