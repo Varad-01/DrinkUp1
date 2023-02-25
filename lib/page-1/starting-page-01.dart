@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -194,7 +195,6 @@ class _StartPage2State extends State<StartPage2> {
                           return null;
                         },
                         decoration:  InputDecoration(
-
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15*fem),
                           ),
@@ -589,8 +589,9 @@ class _StartPage2State extends State<StartPage2> {
                         ),
                         child: TextButton(
                           onPressed: (){
-                            if (_isTextFieldEmpty){ToastMsg('Please fill above details');}
-                            else{Navigator.pushNamed(context, '/main2');}
+                            final weight = _weightController.text;
+                            // Navigator.pushNamed(context, '/main2');
+                            createUser(weight: weight,);
                           },
                           // style: ,
                           child: Text(
@@ -615,5 +616,20 @@ class _StartPage2State extends State<StartPage2> {
               ),
       ),
     );
+  }
+  Future createUser({required String weight}) async{
+
+    final docUser= FirebaseFirestore.instance.collection('users').doc();
+
+    final json = {
+      'weight' : weight,
+    };
+    try {
+      await docUser.set(json);
+      Navigator.pushNamed(context, '/main2');
+    }on FirebaseException catch(e)
+    {
+      print(e);
+    }
   }
 }

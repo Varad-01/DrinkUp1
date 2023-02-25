@@ -113,45 +113,46 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 Container(
-                  // frame2CfM (1:86)
-                  margin: EdgeInsets.fromLTRB(49*fem, 0*fem, 49*fem, 26*fem),
-                  padding: EdgeInsets.fromLTRB(10*fem, 13*fem, 10*fem, 12*fem),
-                  width: double.infinity,
-                  height: 48,
-                  decoration: BoxDecoration (
-                    border: Border.all(color: const Color(0xff0a0f25)),
-                    borderRadius: BorderRadius.circular(15*fem),
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.name,
-                    controller: _nameController,
-                    autovalidateMode:
-                    AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      RegExp regExp = new RegExp('[a-zA-Z]');
-                      if (value!.length == 0) {
-                        return 'Please enter a name';
-                      } else if (!regExp.hasMatch(value)) {
-                        return 'Please enter a valid name';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Full Name',
-                        contentPadding: EdgeInsets.symmetric(vertical: 7.5),
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Satoshi',
-                      fontSize: 22*ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2368751102*ffem/fem,
-                      color: const Color(0xff6e7180),
+                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 10*fem, 0*fem),
+                  width: 322*fem,
+                  height: 75,
+                  child: SizedBox(
+                    // frame2CfM (1:86)
+                    width: 322*fem,
+                    height: 75,
+                    child: TextFormField(
+                      keyboardType: TextInputType.name,
+                      controller: _nameController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        RegExp regExp = new RegExp('[a-zA-Z]');
+                        if (value!.length == 0) {
+                          return 'Please enter a name';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Please enter a valid name';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15*fem),
+                        ),
+                          hintText: 'Full Name',
+                          contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                      ),
+                      style: TextStyle(
+                        fontFamily: 'Satoshi',
+                        fontSize: 22*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2368751102*ffem/fem,
+                        color: const Color(0xff6e7180),
+                      ),
                     ),
                   ),
                 ),
                 Container(
-                  // emailavo (1:
+                  // emailavo (1:98)
                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 289*fem, 9*fem),
                   child: Text(
                     'Email',
@@ -166,39 +167,40 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Container(
                   // frame9gU3 (1:96)
-                  margin: EdgeInsets.fromLTRB(49*fem, 0*fem, 49*fem, 26*fem),
-                  padding: EdgeInsets.fromLTRB(10*fem, 13*fem, 10*fem, 12*fem),
-                  width: double.infinity,
-                  height: 48,
-                  decoration: BoxDecoration (
-                    border: Border.all(color: const Color(0xff0a0f25)),
-                    borderRadius: BorderRadius.circular(15*fem),
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: _emailController,
-                    autovalidateMode:
-                    AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      RegExp regExp = new RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-                      if (value!.length == 0) {
-                        return 'Please enter a name';
-                      } else if (!regExp.hasMatch(value)) {
-                        return 'Please enter a valid name';
-                      }
-                      return null;
-                    },
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'example@gmail.com',
-                      contentPadding: EdgeInsets.symmetric(vertical: 7.5),
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Satoshi',
-                      fontSize: 22*ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2368751102*ffem/fem,
-                      color: const Color(0xff6e7180),
+                  margin: EdgeInsets.fromLTRB(40*fem, 0*fem, 49*fem, 0*fem),
+                  width: 322*fem,
+                  height: 75,
+                  child: SizedBox(
+                    width: 322*fem,
+                    height: 75,
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        RegExp regExp = new RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                        if (value!.length == 0) {
+                          return 'Please enter a name';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Please enter a valid name';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15*fem),
+                        ),
+                        hintText: 'example@gmail.com',
+                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                      ),
+                      style: TextStyle(
+                        fontFamily: 'Satoshi',
+                        fontSize: 22*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2368751102*ffem/fem,
+                        color: const Color(0xff6e7180),
+                      ),
                     ),
                   ),
                 ),
@@ -218,30 +220,42 @@ class _SignUpState extends State<SignUp> {
                 ),
                 Container(
                   // frame8d1u (1:88)
-                  margin: EdgeInsets.fromLTRB(49*fem, 0*fem, 49*fem, 81*fem),
-                  padding: EdgeInsets.fromLTRB(10*fem, 13*fem, 10*fem, 12*fem),
-                  width: double.infinity,
-                  height: 48,
-                  decoration: BoxDecoration (
-                    border: Border.all(color: const Color(0xff0a0f25)),
-                    borderRadius: BorderRadius.circular(15*fem),
-                  ),
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: _passwordController,
-                    obscureText: true,
-                    obscuringCharacter: "*",
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                      contentPadding: EdgeInsets.symmetric(vertical: 7.5),
-                    ),
-                    style: TextStyle(
-                      fontFamily: 'Satoshi',
-                      fontSize: 22*ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2368751102*ffem/fem,
-                      color: const Color(0xff6e7180),
+                  margin: EdgeInsets.fromLTRB(40*fem, 0*fem, 49*fem, 81*fem),
+                  width: 322*fem,
+                  height: 75,
+                  child: SizedBox(
+                    width: 322*fem,
+                    height: 75,
+                    child: TextFormField(
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: _passwordController,
+                      autovalidateMode:
+                      AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        RegExp regExp = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}');
+                        if (value!.length == 0) {
+                          return 'Please enter a password';
+                        } else if (!regExp.hasMatch(value)) {
+                          return 'Please enter a strong name';
+                        }
+                        return null;
+                      },
+                      obscureText: true,
+                      obscuringCharacter: "*",
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15*fem),
+                        ),
+                        hintText: 'Password',
+                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                      ),
+                      style: TextStyle(
+                        fontFamily: 'Satoshi',
+                        fontSize: 22*ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2368751102*ffem/fem,
+                        color: const Color(0xff6e7180),
+                      ),
                     ),
                   ),
                 ),
