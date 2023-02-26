@@ -7,6 +7,8 @@ import 'package:myapp/page-1/home-screen-02.dart';
 import 'package:myapp/page-1/home-screen-03.dart';
 import 'package:myapp/page-1/login.dart';
 import 'package:myapp/page-1/main2.dart';
+import 'package:myapp/page-1/phone_login/phone.dart';
+import 'package:myapp/page-1/phone_login/verify.dart';
 import 'package:myapp/page-1/sign-up.dart';
 import 'package:myapp/page-1/splash-screen.dart';
 import 'package:myapp/page-1/starting-page-01.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		title: 'Flutter',
-		initialRoute: '/welcomePage',
+		initialRoute: '/phone_auth',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),
@@ -37,7 +39,9 @@ class MyApp extends StatelessWidget {
 			'/homePage1':(context)=>Scene(),
 			'/homePage2':(context)=>Scene2(),
 			'/homePage3':(context)=>Scene3(),
-			'/main2':(context)=>main2()
+			'/main2':(context)=>main2(),
+			'/verify':(context)=>Verify(),
+			'/phone_auth':(context)=>Phone()
 		},
 
 		debugShowCheckedModeBanner: false,

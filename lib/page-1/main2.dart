@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:myapp/page-1/home-screen-02.dart';
@@ -49,7 +50,7 @@ class _main2State extends State<main2> {
             iconSize: 28,
             padding: const EdgeInsets.all(12.0),
 
-            tabs: const [
+            tabs: [
               GButton(
                 icon: Icons.home,
                 text: 'Home',
@@ -61,6 +62,15 @@ class _main2State extends State<main2> {
               GButton(
                 icon: Icons.settings,
                 text: 'Settings',
+              ),
+
+              GButton(
+                icon: Icons.logout,
+                text: 'Logout',
+                onPressed: () {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushNamed(context, '/phone_auth');
+                },
               ),
             ],
           ),
