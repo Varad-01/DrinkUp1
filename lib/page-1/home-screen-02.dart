@@ -28,7 +28,7 @@ class _Scene2State extends State<Scene2> {
             padding: EdgeInsets.fromLTRB(1.89*fem, 88*fem, 1.89*fem, 63*fem),
             width: double.infinity,
             decoration: BoxDecoration (
-              color: Color(0xffffffff),
+              color: const Color(0xffffffff),
               borderRadius: BorderRadius.circular(35*fem),
             ),
             child: Column(
@@ -57,7 +57,7 @@ class _Scene2State extends State<Scene2> {
                                 fontSize: 32*ffem,
                                 fontWeight: FontWeight.w500,
                                 height: 1.2575*ffem/fem,
-                                color: Color(0xff179bff),
+                                color: const Color(0xff179bff),
                               ),
                             ),
                           ),
@@ -89,21 +89,21 @@ class _Scene2State extends State<Scene2> {
                                       // progressColor: Colors.deepPurple,
                                       // backgroundColor: Colors.deepPurple.shade100,
                                       backgroundColor: Colors.blue.shade100,
-                                      progressColor: Color.fromRGBO(23, 155, 255,1),
+                                      progressColor: const Color.fromRGBO(23, 155, 255,1),
                                       circularStrokeCap: CircularStrokeCap.round,
                                       center: Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Text('70%', style: TextStyle(fontSize: 56)),
-                                          SizedBox(height: 10),
+                                          const Text('70%', style: TextStyle(fontSize: 56)),
+                                          const SizedBox(height: 10),
                                           Text('${updateValue}ml',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 22,
                                             )
                                           ),
-                                          SizedBox(height: 2),
-                                          Text('1140ml')
+                                          const SizedBox(height: 2),
+                                          const Text('1140ml')
                                         ],
                                       ),
                                     ),
@@ -149,7 +149,7 @@ class _Scene2State extends State<Scene2> {
                               child: Container(
                                 decoration: BoxDecoration (
                                   borderRadius: BorderRadius.circular(10*fem),
-                                  color: Color(0xffbfe3ff),
+                                  color: const Color(0xffbfe3ff),
                                 ),
                               ),
                             ),
@@ -176,7 +176,7 @@ class _Scene2State extends State<Scene2> {
                               child: Container(
                                 decoration: BoxDecoration (
                                   borderRadius: BorderRadius.circular(10*fem),
-                                  color: Color(0xfffce9e3),
+                                  color: const Color(0xfffce9e3),
                                 ),
                               ),
                             ),
@@ -201,7 +201,7 @@ class _Scene2State extends State<Scene2> {
                               child: Container(
                                 decoration: BoxDecoration (
                                   borderRadius: BorderRadius.circular(10*fem),
-                                  color: Color(0xfff1eeff),
+                                  color: const Color(0xfff1eeff),
                                 ),
                               ),
                             ),
@@ -226,7 +226,7 @@ class _Scene2State extends State<Scene2> {
                               child: Container(
                                 decoration: BoxDecoration (
                                   borderRadius: BorderRadius.circular(10*fem),
-                                  color: Color(0xfffffaec),
+                                  color: const Color(0xfffffaec),
                                 ),
                               ),
                             ),
@@ -282,7 +282,7 @@ class _Scene2State extends State<Scene2> {
                                                   fontSize: 15.7065210342*ffem,
                                                   fontWeight: FontWeight.w400,
                                                   height: 1.2*ffem/fem,
-                                                  color: Color(0xff0a0f25),
+                                                  color: const Color(0xff0a0f25),
                                                 ),
                                               ),
                                             ),
@@ -334,7 +334,7 @@ class _Scene2State extends State<Scene2> {
                                                       fontSize: 15.7065210342*ffem,
                                                       fontWeight: FontWeight.w400,
                                                       height: 1.2*ffem/fem,
-                                                      color: Color(0xff0a0f25),
+                                                      color: const Color(0xff0a0f25),
                                                     ),
                                                   ),
                                                 ),
@@ -415,7 +415,7 @@ class _Scene2State extends State<Scene2> {
                                             fontSize: 15.7065210342*ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.2*ffem/fem,
-                                            color: Color(0xff0a0f25),
+                                            color: const Color(0xff0a0f25),
                                           ),
                                         ),
                                       ),
@@ -437,7 +437,7 @@ class _Scene2State extends State<Scene2> {
                                             fontSize: 15.7065210342*ffem,
                                             fontWeight: FontWeight.w400,
                                             height: 1.2*ffem/fem,
-                                            color: Color(0xff0a0f25),
+                                            color: const Color(0xff0a0f25),
                                           ),
                                         ),
                                       ),

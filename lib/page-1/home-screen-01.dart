@@ -29,7 +29,7 @@ class _SceneState extends State<Scene> {
             padding: EdgeInsets.fromLTRB(0*fem, 86*fem, 0*fem, 0*fem),
             width: double.infinity,
             decoration: BoxDecoration (
-              color: Color(0xffffffff),
+              color: const Color(0xffffffff),
               borderRadius: BorderRadius.circular(35*fem),
             ),
             child: Column(
@@ -60,7 +60,7 @@ class _SceneState extends State<Scene> {
                                   fontSize: 65*ffem,
                                   fontWeight: FontWeight.w300,
                                   height: 1.59*ffem/fem,
-                                  color: Color(0xff0091ff),
+                                  color: const Color(0xff0091ff),
                                 ),
                               ),
                               Text(
@@ -71,7 +71,7 @@ class _SceneState extends State<Scene> {
                                   fontSize: 65*ffem,
                                   fontWeight: FontWeight.w300,
                                   height: 1.59*ffem/fem,
-                                  color: Color(0xff0091ff),
+                                  color: const Color(0xff0091ff),
                                 ),
                               ),
                             ],
@@ -93,7 +93,7 @@ class _SceneState extends State<Scene> {
                                 fontSize: 16*ffem,
                                 fontWeight: FontWeight.w300,
                                 height: 1.59*ffem/fem,
-                                color: Color(0xff000000),
+                                color: const Color(0xff000000),
                               ),
                             ),
                           ),
@@ -130,12 +130,12 @@ class _SceneState extends State<Scene> {
                               [
                                 Colors.blue.withOpacity(0.8),
                                 // Colors.blue.shade900.withOpacity(0.7)//2
-                                Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
+                                const Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
                               ],
                               [
                                 Colors.blue.withOpacity(0.8),
                                 // Colors.blue.shade900.withOpacity(0.7) //1
-                                Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
+                                const Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
                               ]
                             ],
                             gradientBegin: Alignment.centerLeft,

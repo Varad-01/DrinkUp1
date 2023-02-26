@@ -130,7 +130,7 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(15*fem),
                         ),
                         hintText: 'example@gmail.com',
-                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
                       ),
                       style: TextStyle(
                         fontFamily: 'Satoshi',
@@ -182,7 +182,7 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(15*fem),
                         ),
                         hintText: 'Password',
-                        contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
                       ),
                       style: TextStyle(
                         fontFamily: 'Satoshi',

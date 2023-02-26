@@ -22,7 +22,7 @@ class SplashScreen extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(43*fem, 165.5*fem, 42*fem, 0*fem),
           width: double.infinity,
           decoration: BoxDecoration (
-            color: Color(0xff179bff),
+            color: const Color(0xff179bff),
             borderRadius: BorderRadius.circular(35*fem),
           ),
           child: Column(

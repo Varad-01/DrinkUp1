@@ -15,7 +15,7 @@ class main2 extends StatefulWidget {
 class _main2State extends State<main2> {
 
   int _curentIndex=0;
-  Color changeColor1=Color.fromRGBO(23, 155, 255,1);
+  Color changeColor1=const Color.fromRGBO(23, 155, 255,1);
 
   final screens=[
     Scene(),
@@ -35,21 +35,21 @@ class _main2State extends State<main2> {
       body: screens[_curentIndex],
 
       bottomNavigationBar: Container(
-        color: Color.fromRGBO(23, 155, 255,1),
+        color: const Color.fromRGBO(23, 155, 255,1),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
           child: GNav(
             onTabChange: (index)=> setState(()=> _curentIndex=index),
-            backgroundColor: Color.fromRGBO(23, 155, 255,1),
+            backgroundColor: const Color.fromRGBO(23, 155, 255,1),
             selectedIndex: _curentIndex,
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.blue.shade800,
             gap: 8,
             iconSize: 28,
-            padding: EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(12.0),
 
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Icons.home,
                 text: 'Home',

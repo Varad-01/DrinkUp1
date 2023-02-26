@@ -199,7 +199,7 @@ class _StartPage2State extends State<StartPage2> {
                             borderRadius: BorderRadius.circular(15*fem),
                           ),
                           hintText: 'weight',
-                          contentPadding: EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
                         ),
                         style: TextStyle(
                           fontFamily: 'Satoshi',
@@ -226,7 +226,7 @@ class _StartPage2State extends State<StartPage2> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   // autogrouptmu5NEw (39vd2T58614rETA85qTMu5)
                   margin: EdgeInsets.fromLTRB(9*fem, 0*fem, 0*fem, 30*fem),
