@@ -65,7 +65,7 @@ class _Scene3State extends State<Scene3> {
                           'Reminders',
                           style: SafeGoogleFont (
                             'Satoshi',
-                            fontSize: 23*ffem,
+                            fontSize: 20*ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.2575*ffem/fem,
                             color: const Color(0xff0a0f25),
@@ -123,9 +123,9 @@ class _Scene3State extends State<Scene3> {
                       ),
                       const Spacer(),
                       Container(
-                        width: 50,
+                        width: 55,
                         height: 25,
-                        child: Expanded(
+                        child:  Expanded(
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                           ),
@@ -146,7 +146,7 @@ class _Scene3State extends State<Scene3> {
                               'Edit personal information',
                             style: SafeGoogleFont (
                               'Satoshi',
-                              fontSize: 23*ffem,
+                              fontSize: 20*ffem,
                               fontWeight: FontWeight.w400,
                               // height: 1.2575*ffem/fem,
                               decoration: TextDecoration.underline,
