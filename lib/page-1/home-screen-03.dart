@@ -13,6 +13,7 @@ class Scene3 extends StatefulWidget {
 class _Scene3State extends State<Scene3> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _consumptionLimitController = TextEditingController();
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -106,14 +107,14 @@ class _Scene3State extends State<Scene3> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      Expanded(
                         // dailyconsumptionGmH (1:178)
                         // margin: EdgeInsets.fromLTRB(0*fem, 4.42*fem, 151*fem, 0*fem),
                         child: Text(
                           'Daily consumption',
                           style: SafeGoogleFont (
                             'Satoshi',
-                            fontSize: 23*ffem,
+                            fontSize: 20*ffem,
                             fontWeight: FontWeight.w400,
                             // height: 1.2575*ffem/fem,
                             color: const Color(0xff0a0f25),
@@ -121,15 +122,13 @@ class _Scene3State extends State<Scene3> {
                         ),
                       ),
                       const Spacer(),
-                      Text(
-                        // mlMnj (1:176)
-                        '2000 ml',
-                        style: SafeGoogleFont (
-                          'Satoshi',
-                          fontSize: 18*ffem,
-                          fontWeight: FontWeight.w700,
-                          height: 1.2575*ffem/fem,
-                          color: const Color(0xff0a0f25),
+                      Container(
+                        width: 50,
+                        height: 25,
+                        child: Expanded(
+                          child: TextFormField(
+                            keyboardType: TextInputType.number,
+                          ),
                         ),
                       ),
                     ],
