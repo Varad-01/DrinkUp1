@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		title: 'Flutter',
-		initialRoute: '/phone_auth',
+		initialRoute: '/homePage3',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),

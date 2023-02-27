@@ -123,14 +123,19 @@ class _Scene3State extends State<Scene3> {
                       ),
                       const Spacer(),
                       Container(
-                        width: 55,
-                        height: 25,
+                        width: 50,
+                        height: 35,
                         child:  Expanded(
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                           ),
                         ),
                       ),
+                      IconButton(
+                          onPressed: () {
+                            //code here for icon button press
+                          },
+                          icon: const Icon(Icons.add)),
                     ],
                   ),
                 ),
