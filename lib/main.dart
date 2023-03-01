@@ -14,6 +14,7 @@ import 'package:myapp/page-1/splash-screen.dart';
 import 'package:myapp/page-1/starting-page-01.dart';
 import 'package:myapp/page-1/starting-page-1.dart';
 import 'package:myapp/page-1/welcome-page.dart';
+import 'package:myapp/snapshott.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/home-screen-01.dart';
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		title: 'Flutter',
-		initialRoute: '/homePage1',
+		initialRoute: '/snapshott',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
 			'/homePage3':(context)=>Scene3(),
 			'/main2':(context)=>main2(),
 			'/verify':(context)=>Verify(),
-			'/phone_auth':(context)=>Phone()
+			'/phone_auth':(context)=>Phone(),
+			'/snapshott':(context)=>Snapshott(),
 		},
 
 		debugShowCheckedModeBanner: false,
