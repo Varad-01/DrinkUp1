@@ -51,6 +51,7 @@ dependencies:
   pinput: ^2.2.12
   flutter_local_notifications: ^13.0.0
   timezone: ^0.9.1
+  lottie: ^2.2.0
 
 
 dev_dependencies:
