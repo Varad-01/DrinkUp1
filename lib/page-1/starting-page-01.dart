@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -164,7 +165,7 @@ class _StartPage2State extends State<StartPage2> {
                   // whatisyourcurrentweightJsM (1:101)
                   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 100*fem, 26*fem),
                   child: Text(
-                    'What is your current weight ?',
+                    'Kitna Paani piyega?',
                     style: TextStyle(
                       fontFamily: 'Satoshi',
                       fontSize: 23*ffem,
@@ -198,7 +199,7 @@ class _StartPage2State extends State<StartPage2> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15*fem),
                           ),
-                          hintText: 'weight',
+                          hintText: 'Paani, ml mein',
                           contentPadding: const EdgeInsets.symmetric(vertical: 7.5,horizontal: 9.5),
                         ),
                         style: TextStyle(
@@ -623,10 +624,11 @@ class _StartPage2State extends State<StartPage2> {
   }
   Future createUser({required String weight}) async{
 
-    final docUser= FirebaseFirestore.instance.collection('users').doc();
+    final docUser= FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString());
+    // If you want, you can put the code inside of doc() in another global string and write the variable name here.
 
     final json = {
-      'weight' : weight,
+      'Water_intake' : weight,
     };
     try {
       await docUser.set(json);

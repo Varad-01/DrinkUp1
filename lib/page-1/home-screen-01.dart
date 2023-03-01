@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -12,9 +14,15 @@ class Scene extends StatefulWidget {
   @override
   State<Scene> createState() => _SceneState();
 }
-
+String phonenumber= FirebaseAuth.instance.currentUser!.phoneNumber.toString();
 class _SceneState extends State<Scene> {
+  String phoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber.toString();
+List<String> docIDs = [];
 
+
+void initState() {
+  super.initState();
+}
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
@@ -54,7 +62,7 @@ class _SceneState extends State<Scene> {
                             children: [
                               Text(
                                 // jvj (1:16)
-                                '860 ',
+                                '860',
                                 style: SafeGoogleFont (
                                   'MuseoModerno',
                                   fontSize: 65*ffem,
@@ -254,3 +262,4 @@ class _SceneState extends State<Scene> {
 
   }
 }
+

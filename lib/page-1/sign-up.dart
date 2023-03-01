@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -353,7 +354,7 @@ class _SignUpState extends State<SignUp> {
 
   Future createUser({required String name, required String email}) async{
 
-    final docUser= FirebaseFirestore.instance.collection('users').doc();
+    final docUser= FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString());
 
     final json = {
       'name' : name,
