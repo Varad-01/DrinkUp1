@@ -17,6 +17,8 @@ import 'package:myapp/page-1/welcome-page.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/home-screen-01.dart';
 
+import 'snapshott.dart';
+
 Future main() async{
 	WidgetsFlutterBinding.ensureInitialized();
 	await Firebase.initializeApp();
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		title: 'Flutter',
-		initialRoute: '/phone_auth',
+		initialRoute: '/snapshott',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),
@@ -41,7 +43,8 @@ class MyApp extends StatelessWidget {
 			'/homePage3':(context)=>Scene3(),
 			'/main2':(context)=>main2(),
 			'/verify':(context)=>Verify(),
-			'/phone_auth':(context)=>Phone()
+			'/phone_auth':(context)=>Phone(),
+			'/snapshott' :(context)=>Snapshott()
 		},
 
 		debugShowCheckedModeBanner: false,
