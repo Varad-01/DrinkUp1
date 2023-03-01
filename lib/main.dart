@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
 	Widget build(BuildContext context) {
 	return MaterialApp(
 		title: 'Flutter',
-		initialRoute: '/welcomePage',
+		initialRoute: '/homePage1',
 		routes: {
 			'/splashScreen':(context)=>SplashScreen(),
 			'/welcomePage':(context)=>WelcomePage(),
@@ -50,11 +50,8 @@ class MyApp extends StatelessWidget {
 		primarySwatch: Colors.blue,
 
 		),
-		home: const Scaffold(
-		body: SingleChildScrollView(
-			child: main2(),
-		),
-		),
+		home: main2(),
+
 	);
 	}
 }

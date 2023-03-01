@@ -624,7 +624,8 @@ class _StartPage2State extends State<StartPage2> {
   }
   Future createUser({required String weight}) async{
 
-    final docUser= FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString());
+    final docUser= FirebaseFirestore.instance.collection('users').doc();
+    
     // If you want, you can put the code inside of doc() in another global string and write the variable name here.
 
     final json = {

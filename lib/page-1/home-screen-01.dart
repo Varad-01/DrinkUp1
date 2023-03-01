@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +13,9 @@ class Scene extends StatefulWidget {
   @override
   State<Scene> createState() => _SceneState();
 }
-String phonenumber= FirebaseAuth.instance.currentUser!.phoneNumber.toString();
+// String phonenumber= FirebaseAuth.instance.currentUser!.phoneNumber.toString();
 class _SceneState extends State<Scene> {
-  String phoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber.toString();
+  // String phoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber.toString();
 List<String> docIDs = [];
 
 
