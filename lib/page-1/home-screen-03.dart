@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import '../Services/notifi_service.dart';
+
 
 class Scene3 extends StatefulWidget {
   @override
@@ -13,6 +16,9 @@ class Scene3 extends StatefulWidget {
 class _Scene3State extends State<Scene3> {
   @override
   Widget build(BuildContext context) {
+    NotificationsServices notificationsServices = NotificationsServices();
+    final consumption = TextEditingController();
+    bool switchValue = false;
     TextEditingController _consumptionLimitController = TextEditingController();
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
@@ -77,13 +83,24 @@ class _Scene3State extends State<Scene3> {
                         width: 90.0,
                         height: 40.0,
                         child: LiteRollingSwitch(
-                          onChanged: (bool position) {
-                            print('the position is: $position');
+                          value: switchValue,
+                          onChanged: (value) {
+                            setState(() {
+                              switchValue = value;
+                            });
+                            if (value) {
+                              // Switch is turned on
+                              notificationsServices.initialiseNotificationS();
+                              notificationsServices.scheduleNotification("Drink Water","Have you had any water yet?");
+                            } else {
+                              // Switch is turned off
+                              notificationsServices.initialiseNotificationS();
+                              notificationsServices.stopNotification();
+                            }
                           },
                           onTap: () {},
                           onDoubleTap: () {},
                           onSwipe: () {},
-                          value: false,
                           width: 90.0,
                           textOn: "On",
                           textOff: 'Off',
@@ -133,7 +150,9 @@ class _Scene3State extends State<Scene3> {
                       ),
                       IconButton(
                           onPressed: () {
-                            //code here for icon button press
+                            final limit = consumption.text;
+
+                            updateUser(limit: limit);
                           },
                           icon: const Icon(Icons.add)),
                     ],
@@ -172,5 +191,18 @@ class _Scene3State extends State<Scene3> {
         ),
       )
     );
+  }
+
+  Future<void> updateUser({required String limit}) {
+    CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+
+    return docUser
+        .doc('ABC')
+        .update({'limit': limit})
+        .then((value) {
+      print("User Updated");
+      Navigator.pushNamed(context, '/startPage1');
+    })
+        .catchError((error) => print("Failed to update user: $error"));
   }
 }
