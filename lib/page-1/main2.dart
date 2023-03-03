@@ -29,19 +29,35 @@ class _main2State extends State<main2> {
   @override
   Widget build(BuildContext context) {
 
-    Color navColor=Colors.black;
+    Color navColor=Color.fromRGBO(23, 155, 255,1);
     Color tabColor=Colors.grey.shade800;
 
     return Scaffold(
       body: screens[_curentIndex],
-
       bottomNavigationBar: Container(
-        color: const Color.fromRGBO(23, 155, 255,1),
+        // color: const Color.fromRGBO(23, 155, 255,1),
+        color: navColor,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 13),
           child: GNav(
-            onTabChange: (index)=> setState(()=> _curentIndex=index),
-            backgroundColor: const Color.fromRGBO(23, 155, 255,1),
+            // onTabChange: (index)=> setState(()=> _curentIndex=index),
+            onTabChange: (index){
+              setState(() {
+                if(index==0){
+                  print(index);
+                  navColor=Color.fromRGBO(23, 155, 255,1);
+                  print(navColor);
+                }
+                else if(index>0){
+                  print(index);
+                  navColor=Colors.white;
+                  print(navColor);
+                }
+                _curentIndex=index;
+              });
+            },
+            // backgroundColor: const Color.fromRGBO(23, 155, 255,1),
+            backgroundColor: navColor,
             selectedIndex: _curentIndex,
             color: Colors.white,
             activeColor: Colors.white,
@@ -53,15 +69,15 @@ class _main2State extends State<main2> {
             tabs: [
               GButton(
                 icon: Icons.home,
-                text: 'Home',
+                // text: 'Home',
               ),
               GButton(
                 icon: Icons.bar_chart_outlined,
-                text: 'Progress',
+                // text: 'Progress',
               ),
               GButton(
                 icon: Icons.settings,
-                text: 'Settings',
+                // text: 'Settings',
               ),
 
               GButton(

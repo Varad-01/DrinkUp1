@@ -1,6 +1,7 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationsServices {
+
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
 
@@ -12,7 +13,6 @@ class NotificationsServices {
     InitializationSettings(
       android: _androidInitializationSettings,
     );
-
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 

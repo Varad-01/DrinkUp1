@@ -13,15 +13,28 @@ class Scene extends StatefulWidget {
   @override
   State<Scene> createState() => _SceneState();
 }
+
 String phonenumber= FirebaseAuth.instance.currentUser!.phoneNumber.toString();
 class _SceneState extends State<Scene> {
   String phoneNumber = FirebaseAuth.instance.currentUser!.phoneNumber.toString();
-List<String> docIDs = [];
+  List<String> docIDs = [];
 
+  void initState() {
+    super.initState();
+    getData();
+  }
 
-void initState() {
-  super.initState();
-}
+  String consumed="";
+  Future getData() async{
+    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
+      setState(() {
+        consumed=value['consumed'];
+      });
+    });
+    print("Fetched Data Successfully");
+
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 430;
@@ -51,7 +64,7 @@ void initState() {
                     children: [
                       Positioned(
                         // drinkindicator675 (1:15)
-                        left: 0*fem,
+                        left: 21*fem,
                         top: 0*fem,
                         child: Container(
                           width: 219*fem,
@@ -61,10 +74,10 @@ void initState() {
                             children: [
                               Text(
                                 // jvj (1:16)
-                                '860',
+                                '$consumed',
                                 style: SafeGoogleFont (
                                   'MuseoModerno',
-                                  fontSize: 65*ffem,
+                                  fontSize: 70*ffem,
                                   fontWeight: FontWeight.w300,
                                   height: 1.59*ffem/fem,
                                   color: const Color(0xff0091ff),

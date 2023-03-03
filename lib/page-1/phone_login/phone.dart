@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/page-1/phone_login/verify.dart';
 
 class Phone extends StatefulWidget {
   const Phone({Key? key}) : super(key: key);
@@ -30,7 +31,6 @@ class _PhoneState extends State<Phone> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               const SizedBox(
                 height: 25,
               ),
@@ -105,27 +105,24 @@ class _PhoneState extends State<Phone> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         primary: Colors.blueAccent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                     onPressed: () async{
-                      await FirebaseAuth.instance.verifyPhoneNumber(
-                        phoneNumber: '${countryController.text + phone}',
-                        verificationCompleted: (PhoneAuthCredential credential) {},
-                        verificationFailed: (FirebaseAuthException e) {},
+                        await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: '${countryController.text + phone}',
+                          verificationCompleted: (PhoneAuthCredential credential) {},
+                          verificationFailed: (FirebaseAuthException e) {},
 
-                        codeSent: (String verificationId, int? resendToken) {
-                          Phone.verify = verificationId;
-                          Navigator.pushNamed(context, '/verify');
-                        },
-                        codeAutoRetrievalTimeout: (String verificationId) {},
+                          codeSent: (String verificationId, int? resendToken) {
+                            Phone.verify = verificationId;
+                            Verify(phoneNumber: '');
+                            Navigator.pushNamed(context, '/verify');
+                          },
+                          codeAutoRetrievalTimeout: (String verificationId) {},
                       );
-
-
 
                     },
                     child: const Text("Send the code")),
               ),
-
             ],
           ),
         ),

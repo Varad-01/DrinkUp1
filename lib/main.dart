@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
 			'/homePage2':(context)=>Scene2(),
 			'/homePage3':(context)=>Scene3(),
 			'/main2':(context)=>main2(),
-			'/verify':(context)=>Verify(),
+			'/verify':(context)=>Verify(phoneNumber: ''),
 			'/phone_auth':(context)=>Phone(),
 			'/snapshott':(context)=>Snapshott(),
 		},
@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
 
 		),
 		home: main2(),
-
 	);
 	}
 }

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/page-1/home-screen-01.dart';
+import 'package:myapp/page-1/main2.dart';
 import 'package:myapp/page-1/starting-page-01.dart';
 import 'package:myapp/page-1/starting-page-1.dart';
 import 'package:myapp/page-1/welcome-page.dart';
@@ -25,7 +26,7 @@ class _SnapshottState extends State<Snapshott> {
           {
             if(snapshot.hasData)
           {
-            return Scene();
+            return main2();
           }
               else{
                 return const Phone();

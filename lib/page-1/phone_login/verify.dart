@@ -1,16 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/page-1/home-screen-01.dart';
 import 'package:myapp/page-1/phone_login/phone.dart';
 import 'package:pinput/pinput.dart';
 
 class Verify extends StatefulWidget {
-  const Verify({Key? key}) : super(key: key);
+
+  // const Verify({Key? key}) : super(key: key);
+  String phoneNumber="";
+  Verify({required this.phoneNumber});
 
   @override
-  State<Verify> createState() => _VerifyState();
+  State<Verify> createState() => _VerifyState(phoneNumber: phoneNumber);
 }
 
 class _VerifyState extends State<Verify> {
+  String phoneNumber="";
+  _VerifyState({required this.phoneNumber});
+
+  // Verify({required phoneNumber});
   final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -29,7 +38,6 @@ class _VerifyState extends State<Verify> {
   );
 
   var code="";
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,10 +113,10 @@ class _VerifyState extends State<Verify> {
                       try{
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: Phone.verify, smsCode: code);
                         await auth.signInWithCredential(credential);
+                        print("working");
+                        await createUser(phone: phoneNumber);
                         Navigator.pushNamedAndRemoveUntil(context, "/main2", (route) => false);
-
                       }
-
                       catch(e)
                       {
                         final snackbar = SnackBar(content: Text("Invalid OTP"));
@@ -140,4 +148,25 @@ class _VerifyState extends State<Verify> {
       ),
     );
   }
+
+  Future createUser({required String phone}) async{
+
+    final docUser= FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString());
+
+    final json = {
+      'phone': FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+      'consumed':'0',
+      'notification': true,
+      'consumptionTarget':'1140',
+      'Time' : DateTime.now(),
+    };
+    try {
+      await docUser.set(json);
+      Navigator.pushNamed(context, '/startPage1');
+    }on FirebaseException catch(e)
+    {
+      print(e);
+    }
+  }
+
 }

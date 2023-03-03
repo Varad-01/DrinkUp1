@@ -374,7 +374,7 @@ class _SignUpState extends State<SignUp> {
     CollectionReference docUser = FirebaseFirestore.instance.collection('users');
 
     return docUser
-        .doc('ABC')
+        .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
         .update({'name': name,'email': email,'Time': DateTime.now()})
         .then((value) {
           print("User Updated");

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -14,17 +15,47 @@ class Scene3 extends StatefulWidget {
 }
 
 class _Scene3State extends State<Scene3> {
+
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  late bool switchValue;
+  String notificationText="off";
+  Future getData() async{
+    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
+      setState(() {
+        switchValue=value['notification'];
+      });
+      if(switchValue==true){
+        notificationText="on";
+        print(switchValue);
+      }
+      else{
+        notificationText="off";
+        print(switchValue);
+      }
+    });
+    print("Fetched Data Successfully");
+
+  }
+
   @override
   Widget build(BuildContext context) {
     NotificationsServices notificationsServices = NotificationsServices();
     final consumption = TextEditingController();
-    bool switchValue = false;
+
+
+    print(notificationText);
+
     TextEditingController _consumptionLimitController = TextEditingController();
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           width: double.infinity,
@@ -87,12 +118,15 @@ class _Scene3State extends State<Scene3> {
                           onChanged: (value) {
                             setState(() {
                               switchValue = value;
+                              print(value);
                             });
                             if (value) {
+                              print(value);
                               // Switch is turned on
                               notificationsServices.initialiseNotificationS();
                               notificationsServices.scheduleNotification("Drink Water","Have you had any water yet?");
                             } else {
+                              print(value);
                               // Switch is turned off
                               notificationsServices.initialiseNotificationS();
                               notificationsServices.stopNotification();
@@ -151,39 +185,11 @@ class _Scene3State extends State<Scene3> {
                       IconButton(
                           onPressed: () {
                             final limit = consumption.text;
-
-                            updateUser(limit: limit);
+                            // updateUser(limit: limit);
                           },
                           icon: const Icon(Icons.add)),
                     ],
                   ),
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      // editpersonalinformationUcT (1:179)
-                      margin: EdgeInsets.only(bottom: 421*fem),
-                      child: TextButton(
-                          child: Text(
-                              'Edit personal information',
-                            style: SafeGoogleFont (
-                              'Satoshi',
-                              fontSize: 20*ffem,
-                              fontWeight: FontWeight.w400,
-                              // height: 1.2575*ffem/fem,
-                              decoration: TextDecoration.underline,
-                              color: const Color(0xff0a0f25),
-                              decorationColor: const Color(0xff0a0f25),
-                            ),
-                          ),
-                          onPressed: (){
-                            Navigator.pushNamed(context, '/startPage2');
-                          },
-                        ),
-                      ),
-                  ],
                 ),
               ],
             ),
@@ -193,16 +199,16 @@ class _Scene3State extends State<Scene3> {
     );
   }
 
-  Future<void> updateUser({required String limit}) {
-    CollectionReference docUser = FirebaseFirestore.instance.collection('users');
-
-    return docUser
-        .doc('ABC')
-        .update({'limit': limit})
-        .then((value) {
-      print("User Updated");
-      Navigator.pushNamed(context, '/startPage1');
-    })
-        .catchError((error) => print("Failed to update user: $error"));
-  }
+  // Future<void> updateUser({required String limit}) {
+  //   CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+  //
+  //   return docUser
+  //       .doc('ABC')
+  //       .update({'limit': limit})
+  //       .then((value) {
+  //     print("User Updated");
+  //     Navigator.pushNamed(context, '/startPage1');
+  //   })
+  //       .catchError((error) => print("Failed to update user: $error"));
+  // }
 }
