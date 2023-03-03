@@ -119,7 +119,6 @@ class _Scene2State extends State<Scene2> {
           child: Container(
             width: double.infinity,
             child: Container(
-              // homescreen02QVR (1:181)
               padding: EdgeInsets.fromLTRB(
                   1.89 * fem, 88 * fem, 1.89 * fem, 63 * fem),
               width: double.infinity,
