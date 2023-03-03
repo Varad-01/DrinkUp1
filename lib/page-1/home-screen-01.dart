@@ -45,7 +45,6 @@ class _SceneState extends State<Scene> {
         child: Container(
           width: double.infinity,
           child: Container(
-            // homescreen01siB (1:2)
             padding: EdgeInsets.fromLTRB(0*fem, 86*fem, 0*fem, 0*fem),
             width: double.infinity,
             decoration: BoxDecoration (
