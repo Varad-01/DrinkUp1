@@ -24,7 +24,7 @@ class _SceneState extends State<Scene> {
     getData();
   }
 
-  String consumed="";
+  int consumed=0;
   Future getData() async{
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
@@ -273,4 +273,3 @@ class _SceneState extends State<Scene> {
 
   }
 }
-

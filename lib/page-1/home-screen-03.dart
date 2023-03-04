@@ -20,7 +20,7 @@ class _Scene3State extends State<Scene3> {
     super.initState();
     getData();
   }
-
+  int dailyConsumption = 0;
   late bool switchValue;
   String notificationText="off";
   Future getData() async{
@@ -43,9 +43,10 @@ class _Scene3State extends State<Scene3> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _textEditingController =
+    TextEditingController();
     NotificationsServices notificationsServices = NotificationsServices();
     final consumption = TextEditingController();
-
 
     print(notificationText);
 
@@ -53,6 +54,61 @@ class _Scene3State extends State<Scene3> {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    void _showDialogBox() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Daily consumption'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  controller: _textEditingController,
+                  autovalidateMode:
+                  AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    RegExp regExp = RegExp("^([2-9]\d{3}|[1-9]\d{4,})");
+                    if (value!.isEmpty) {
+                      return 'Please enter a daily consumption limit';
+                    } else if (!regExp.hasMatch(value)) {
+                      return 'Please enter value greater than 2000 ml';
+                    }
+                    return null;
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Enter some text',
+                  ),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('CANCEL'),
+              ),
+              TextButton(
+                onPressed: () {
+                  // Perform action with the text entered in the text field
+                  String enteredText = _textEditingController.text;
+                  dailyConsumption = int.parse(enteredText);
+                  print('Entered Text: $enteredText');
+                  updateUser(switchValue: switchValue,dailyConsumption: dailyConsumption);
+                  if(dailyConsumption>=2000 && dailyConsumption<10000) {
+                    Navigator.of(context).pop();
+                  }
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -118,6 +174,7 @@ class _Scene3State extends State<Scene3> {
                           onChanged: (value) {
                             setState(() {
                               switchValue = value;
+                              updateUser(switchValue: switchValue, dailyConsumption: dailyConsumption);
                               print(value);
                             });
                             if (value) {
@@ -153,7 +210,7 @@ class _Scene3State extends State<Scene3> {
                 //next
                 Container(
                   // autogroup1rcbyXH (39vg7cRbV4QDUVTQqE1rcB)
-                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 10*fem, 61*fem),
+                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 10*fem, 53.58*fem),
                   width: double.infinity,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,17 +234,41 @@ class _Scene3State extends State<Scene3> {
                         width: 50,
                         height: 35,
                         child:  Expanded(
-                          child: TextFormField(
-                            keyboardType: TextInputType.number,
+                          child: InkWell(
+                            child: Text(
+                                '${dailyConsumption}ml',
+                              style: SafeGoogleFont (
+                                'Satoshi',
+                                fontSize: 16*ffem,
+                                fontWeight: FontWeight.w400,
+                                // height: 1.2575*ffem/fem,
+                                color: const Color(0xff0a0f25),
+                              ),
+                            ),
+                            onTap: () {
+                              _showDialogBox();
+                            },
                           ),
                         ),
                       ),
-                      IconButton(
+                      // IconButton(
+                      //     onPressed: () {
+                      //       final limit = consumption.text;
+                      //       // updateUser(limit: limit);
+                      //     },
+                      //     icon: const Icon(Icons.add)),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(
                           onPressed: () {
-                            final limit = consumption.text;
-                            // updateUser(limit: limit);
+                            FirebaseAuth.instance.signOut();
                           },
-                          icon: const Icon(Icons.add)),
+                          child: const Text("Sign Out")),
                     ],
                   ),
                 ),
@@ -199,16 +280,16 @@ class _Scene3State extends State<Scene3> {
     );
   }
 
-  // Future<void> updateUser({required String limit}) {
-  //   CollectionReference docUser = FirebaseFirestore.instance.collection('users');
-  //
-  //   return docUser
-  //       .doc('ABC')
-  //       .update({'limit': limit})
-  //       .then((value) {
-  //     print("User Updated");
-  //     Navigator.pushNamed(context, '/startPage1');
-  //   })
-  //       .catchError((error) => print("Failed to update user: $error"));
-  // }
+  Future<void> updateUser({bool? switchValue,int? dailyConsumption}) {
+    CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+
+    return docUser
+        .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
+        .update({'notification': switchValue,'consumptionTarget': dailyConsumption})
+        .then((value) {
+      print("User Updated");
+    })
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
 }

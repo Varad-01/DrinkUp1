@@ -20,7 +20,7 @@ class _Scene2State extends State<Scene2> {
     getData();
   }
 
-  String consumed="";
+  int consumed=0;
   double progressBarValue=0;
   String progressBarText="0%";
   Future getData() async{
@@ -29,9 +29,10 @@ class _Scene2State extends State<Scene2> {
         consumed=value['consumed'];
       });
     });
-    print("Fetched Data Successfully");
+    // print("Fetched Data Successfully");
 
-    int currentValue=int.parse(consumed);
+    // int currentValue=int.parse(consumed);
+    int currentValue=consumed;
     if(currentValue>114 && currentValue<228)
     {
       setState(() {
@@ -102,6 +103,7 @@ class _Scene2State extends State<Scene2> {
         progressBarText="100%";
       });
     }
+    return currentValue;
 
   }
 
@@ -228,7 +230,6 @@ class _Scene2State extends State<Scene2> {
                     height: 149 * fem,
                     child: Stack(
                       children: [
-
                         //colors 1st box;
                         Positioned(
                           // rectangle3cz7 (1:197)
@@ -240,8 +241,8 @@ class _Scene2State extends State<Scene2> {
                                 //add value to the progress bar,
                                 setState(() {
                                   updateValue += 180;
-                                  updateUser(updateValue: updateValue);
                                 });
+                                updateUser(updateValue: updateValue);
                               },
                               child: SizedBox(
                                 width: 164 * fem,
@@ -269,8 +270,9 @@ class _Scene2State extends State<Scene2> {
                                 //add value
                                 setState(() {
                                   updateValue += 500;
-                                  updateUser(updateValue: updateValue);
                                 });
+                                updateUser(updateValue: updateValue);
+                                getData();
                               },
                               child: SizedBox(
                                 width: 164 * fem,
@@ -296,8 +298,9 @@ class _Scene2State extends State<Scene2> {
                                 //add value
                                 setState(() {
                                   updateValue += 250;
-                                  updateUser(updateValue: updateValue);
                                 });
+                                updateUser(updateValue: updateValue);
+                                getData();
                               },
                               child: SizedBox(
                                 width: 165 * fem,
@@ -323,8 +326,9 @@ class _Scene2State extends State<Scene2> {
                                 //add value
                                 setState(() {
                                   updateValue += 750;
-                                  updateUser(updateValue: updateValue);
                                 });
+                                updateUser(updateValue: updateValue);
+                                getData();
                               },
                               child: SizedBox(
                                 width: 165 * fem,
@@ -364,8 +368,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 180;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                         splashColor: Colors.blue,
                                         child: Container(
@@ -469,8 +474,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 500;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                       ),
                                     ],
@@ -488,8 +494,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 250;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                         splashColor: Colors.blue.shade900,
                                         child: Container(
@@ -517,8 +524,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 750;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                       ),
                                     ],
@@ -555,8 +563,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 250;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                       ),
                                       InkWell(
@@ -578,8 +587,9 @@ class _Scene2State extends State<Scene2> {
                                         onTap: () {
                                           setState(() {
                                             updateValue += 750;
-                                            updateUser(updateValue: updateValue);
                                           });
+                                          updateUser(updateValue: updateValue);
+                                          getData();
                                         },
                                       ),
                                     ],
@@ -626,8 +636,11 @@ class _Scene2State extends State<Scene2> {
         .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
         .update({'consumed': updateValue})
         .then((value) {
-      print("User Updated");
-    })
-        .catchError((error) => print("Failed to update user: $error"));
+      // setState(() {
+      //   getData();
+      // });
+    }).catchError((error) => print("Failed to update user: $error"));
+
+
   }
 }

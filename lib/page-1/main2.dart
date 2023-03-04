@@ -79,15 +79,6 @@ class _main2State extends State<main2> {
                 icon: Icons.settings,
                 // text: 'Settings',
               ),
-
-              GButton(
-                icon: Icons.logout,
-                text: 'Logout',
-                onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  Navigator.pushNamed(context, '/phone_auth');
-                },
-              ),
             ],
           ),
         ),
