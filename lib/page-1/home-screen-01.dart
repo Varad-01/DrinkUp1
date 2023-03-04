@@ -201,66 +201,6 @@ class _SceneState extends State<Scene> {
 
                       //till here
 
-                      Positioned(
-                        // bluewaterdropVPR (1:18)
-                        left: 22.0000915527*fem,
-                        top: 0.0000228882*fem,
-                        child: Align(
-                          child: SizedBox(
-                            width: 35.67*fem,
-                            height: 43.68*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        // bluewaterdrop9ym (1:19)
-                        left: 374*fem,
-                        top: 0*fem,
-                        child: Align(
-                          child: SizedBox(
-                            width: 25.11*fem,
-                            height: 29.58*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Edh.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        // bluewaterdropEEX (1:20)
-                        left: 370*fem,
-                        top: 101.9999303818*fem,
-                        child: Align(
-                          child: SizedBox(
-                            width: 38*fem,
-                            height: 44.77*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-i8K.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        // bluewaterdropiQb (1:21)
-                        left: 19.5105743408*fem,
-                        top: 116.0812189579*fem,
-                        child: Align(
-                          child: SizedBox(
-                            width: 40.77*fem,
-                            height: 40*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Ww5.png',
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
