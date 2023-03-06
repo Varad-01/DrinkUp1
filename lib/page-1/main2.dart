@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:myapp/page-1/home-screen-01.dart';
 import 'package:myapp/page-1/home-screen-02.dart';
 import 'package:myapp/page-1/home-screen-03.dart';
-
-import 'home-screen-01.dart';
 
 class main2 extends StatefulWidget {
   const main2({Key? key}) : super(key: key);
@@ -15,69 +13,47 @@ class main2 extends StatefulWidget {
 
 class _main2State extends State<main2> {
 
-  int _curentIndex=0;
-  Color changeColor1=const Color.fromRGBO(23, 155, 255,1);
-
-  final screens=[
-    Scene(),
-    Scene2(),
-    Scene3(),
-  ];
-  bool check=false;
-
+  int _currentIndex=0;
+  final screens=[    Scene(),    Scene2(),    Scene3(),  ];
 
   @override
   Widget build(BuildContext context) {
 
-    Color navColor=Color.fromRGBO(23, 155, 255,1);
-    Color tabColor=Colors.grey.shade800;
-
     return Scaffold(
-      body: screens[_curentIndex],
+      extendBody: true,
+      body: screens[_currentIndex],
       bottomNavigationBar: Container(
-        // color: const Color.fromRGBO(23, 155, 255,1),
-        color: navColor,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          boxShadow: [
+            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
+          ],
+        ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 13),
+          padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 23),
           child: GNav(
-            // onTabChange: (index)=> setState(()=> _curentIndex=index),
-            onTabChange: (index){
+            gap: 8,
+            activeColor: Colors.white,
+            iconSize: 28,
+            padding: EdgeInsets.all(12.0),
+            duration: Duration(milliseconds: 800),
+            tabBackgroundColor: Colors.blue.shade800,
+            backgroundColor: Colors.transparent,
+            selectedIndex: _currentIndex,
+            onTabChange: (index) {
               setState(() {
-                if(index==0){
-                  print(index);
-                  navColor=Color.fromRGBO(23, 155, 255,1);
-                  print(navColor);
-                }
-                else if(index>0){
-                  print(index);
-                  navColor=Colors.white;
-                  print(navColor);
-                }
-                _curentIndex=index;
+                _currentIndex = index;
               });
             },
-            // backgroundColor: const Color.fromRGBO(23, 155, 255,1),
-            backgroundColor: navColor,
-            selectedIndex: _curentIndex,
-            color: Colors.white,
-            activeColor: Colors.white,
-            tabBackgroundColor: Colors.blue.shade800,
-            gap: 8,
-            iconSize: 28,
-            padding: const EdgeInsets.all(12.0),
-
             tabs: [
               GButton(
-                icon: Icons.home,
-                // text: 'Home',
+                icon: Icons.home
               ),
               GButton(
                 icon: Icons.bar_chart_outlined,
-                // text: 'Progress',
               ),
               GButton(
                 icon: Icons.settings,
-                // text: 'Settings',
               ),
             ],
           ),
@@ -86,26 +62,3 @@ class _main2State extends State<main2> {
     );
   }
 }
-
-
-// onTap: (index)=> setState(()=> _curentIndex=index),
-// currentIndex: _curentIndex,
-// iconSize: 34,
-//
-// items: [
-// BottomNavigationBarItem(
-// icon: Icon(Icons.home_outlined),
-// label: 'home'
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.bar_chart_outlined),
-// label: 'home',
-// ),
-// BottomNavigationBarItem(
-// icon: Icon(Icons.settings),
-// label: 'home'
-// ),
-//
-// ],
-
-
