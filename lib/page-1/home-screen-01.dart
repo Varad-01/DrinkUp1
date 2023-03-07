@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
@@ -7,6 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+
+
 
 class Scene extends StatefulWidget {
 
@@ -214,9 +217,13 @@ class _SceneState extends State<Scene> {
                           child: SizedBox(
                             width: 35.67*fem,
                             height: 43.68*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop.png',
-                              fit: BoxFit.contain,
+                            child: Transform.rotate(
+                              // apply transform to flip image horizontally
+                              angle: math.pi,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
@@ -229,9 +236,13 @@ class _SceneState extends State<Scene> {
                           child: SizedBox(
                             width: 25.11*fem,
                             height: 29.58*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Edh.png',
-                              fit: BoxFit.contain,
+                            child: Transform.rotate(
+                              // apply transform to flip image horizontally
+                              angle: math.pi,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
@@ -244,9 +255,13 @@ class _SceneState extends State<Scene> {
                           child: SizedBox(
                             width: 38*fem,
                             height: 44.77*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-i8K.png',
-                              fit: BoxFit.contain,
+                            child: Transform.rotate(
+                              // apply transform to flip image horizontally
+                              angle: math.pi,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
@@ -259,9 +274,13 @@ class _SceneState extends State<Scene> {
                           child: SizedBox(
                             width: 40.77*fem,
                             height: 40*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Ww5.png',
-                              fit: BoxFit.contain,
+                            child: Transform.rotate(
+                              // apply transform to flip image horizontally
+                              angle: math.pi,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
