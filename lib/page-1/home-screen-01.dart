@@ -42,6 +42,7 @@ class _SceneState extends State<Scene> {
     double ffem = fem * 0.97;
     return Scaffold(
       body: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Container(
           width: double.infinity,
           child: Container(

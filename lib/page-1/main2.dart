@@ -23,12 +23,12 @@ class _main2State extends State<main2> {
       extendBody: true,
       body: screens[_currentIndex],
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          boxShadow: [
-            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
-          ],
-        ),
+        // decoration: BoxDecoration(
+        //   color: Colors.transparent,
+        //   boxShadow: [
+        //     BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
+        //   ],
+        // ),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 35.0, vertical: 23),
           child: GNav(

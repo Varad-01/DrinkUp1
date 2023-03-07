@@ -111,11 +111,21 @@ class _VerifyState extends State<Verify> {
 
                     onPressed: () async{
                       try{
+                        // showDialog(
+                        //     context: context,
+                        //     builder: (context){
+                        //       return Center(
+                        //         child: CircularProgressIndicator(),
+                        //       );
+                        //     }
+                        // );
                         PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: Phone.verify, smsCode: code);
                         await auth.signInWithCredential(credential);
                         print("working");
                         await createUser(phone: phoneNumber);
+                        // Navigator.of(context).pop();
                         Navigator.pushNamedAndRemoveUntil(context, "/main2", (route) => false);
+
                       }
                       catch(e)
                       {
@@ -156,7 +166,7 @@ class _VerifyState extends State<Verify> {
     final json = {
       'phone': FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
       'consumed':'0',
-      'notification': true,
+      'notification': false,
       'consumptionTarget':'1140',
       'Time' : DateTime.now(),
     };

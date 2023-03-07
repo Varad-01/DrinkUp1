@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import '../Services/notifi_service.dart';
-
+import 'package:notification_permissions/notification_permissions.dart';
 
 class Scene3 extends StatefulWidget {
   @override
@@ -20,25 +20,24 @@ class _Scene3State extends State<Scene3> {
     super.initState();
     getData();
   }
-  int dailyConsumption = 0;
+
   late bool switchValue;
+  int dailyConsumption = 0;
   String notificationText="off";
   Future getData() async{
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
         switchValue=value['notification'];
+        dailyConsumption=value['consumptionTarget'];
       });
       if(switchValue==true){
         notificationText="on";
-        print(switchValue);
       }
       else{
         notificationText="off";
-        print(switchValue);
       }
     });
     print("Fetched Data Successfully");
-
   }
 
   @override
@@ -54,6 +53,19 @@ class _Scene3State extends State<Scene3> {
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    void requestNotificationPermission(BuildContext context) async {
+      PermissionStatus permissionStatus = await NotificationPermissions.requestNotificationPermissions();
+      if (permissionStatus == PermissionStatus.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please allow notification permission'),
+            duration: Duration(seconds: 4),
+          ),
+        );
+
+      }
+    }
 
     void _showDialogBox() {
       showDialog(
@@ -88,17 +100,21 @@ class _Scene3State extends State<Scene3> {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
+                  getData();
                 },
                 child: Text('CANCEL'),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: ()  {
                   // Perform action with the text entered in the text field
                   String enteredText = _textEditingController.text;
                   dailyConsumption = int.parse(enteredText);
-                  print('Entered Text: $enteredText');
+                  print('Entered Value: $enteredText');
+
                   updateUser(switchValue: switchValue,dailyConsumption: dailyConsumption);
+
                   if(dailyConsumption>=2000 && dailyConsumption<10000) {
+                    getData();
                     Navigator.of(context).pop();
                   }
                 },
@@ -180,6 +196,7 @@ class _Scene3State extends State<Scene3> {
                             if (value) {
                               print(value);
                               // Switch is turned on
+                              requestNotificationPermission(context);
                               notificationsServices.initialiseNotificationS();
                               notificationsServices.scheduleNotification("Drink Water","Have you had any water yet?");
                             } else {
