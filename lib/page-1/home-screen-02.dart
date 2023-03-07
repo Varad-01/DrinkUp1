@@ -23,87 +23,87 @@ class _Scene2State extends State<Scene2> {
   int consumed=0;
   double progressBarValue=0;
   String progressBarText="0%";
+  int remainWater=0;
+
   Future getData() async{
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
         consumed=value['consumed'];
+        remainWater=value['consumptionTarget'];
       });
     });
-    // print("Fetched Data Successfully");
-
-    // int currentValue=int.parse(consumed);
-    int currentValue=consumed;
-    if(currentValue>114 && currentValue<228)
+    // int currentValue=consumed;
+    if(consumed>114 && consumed<228)
     {
       setState(() {
         progressBarValue=0.1;
         progressBarText="10%";
       });
     }
-    else if(currentValue>228 && currentValue<342)
+    else if(consumed>228 && consumed<342)
     {
       setState(() {
         progressBarValue=0.2;
         progressBarText="20%";
       });
     }
-    else if(currentValue>342 && currentValue<456)
+    else if(consumed>342 && consumed<456)
     {
       setState(() {
         progressBarValue=0.3;
         progressBarText="30%";
       });
     }
-    else if(currentValue>456 && currentValue<570)
+    else if(consumed>456 && consumed<570)
     {
       setState(() {
         progressBarValue=0.4;
         progressBarText="40%";
       });
     }
-    else if(currentValue>570 && currentValue<684)
+    else if(consumed>570 && consumed<684)
     {
       setState(() {
         progressBarValue=0.5;
         progressBarText="50%";
       });
     }
-    else if(currentValue>684 && currentValue<798)
+    else if(consumed>684 && consumed<798)
     {
       setState(() {
         progressBarValue=0.6;
         progressBarText="60%";
       });
     }
-    else if(currentValue>798 && currentValue<912)
+    else if(consumed>798 && consumed<912)
     {
       setState(() {
         progressBarValue=0.7;
         progressBarText="70%";
       });
     }
-    else if(currentValue>912 && currentValue<1026)
+    else if(consumed>912 && consumed<1026)
     {
       setState(() {
         progressBarValue=0.8;
         progressBarText="80%";
       });
     }
-    else if(currentValue>1024 && currentValue<1140)
+    else if(consumed>1024 && consumed<1140)
     {
       setState(() {
         progressBarValue=0.9;
         progressBarText="90%";
       });
     }
-    else if(currentValue>1140)
+    else if(consumed>1140)
     {
       setState(() {
         progressBarValue=1.0;
         progressBarText="100%";
       });
     }
-    return currentValue;
+    return consumed;
 
   }
 
@@ -117,6 +117,7 @@ class _Scene2State extends State<Scene2> {
     double ffem = fem * 0.97;
 
     return Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
@@ -206,7 +207,7 @@ class _Scene2State extends State<Scene2> {
                                                 )
                                             ),
                                             const SizedBox(height: 2),
-                                            const Text('1140ml')
+                                            Text('$remainWater'+" ml")
                                           ],
                                         ),
                                       ),
@@ -240,9 +241,10 @@ class _Scene2State extends State<Scene2> {
                               onTap: () {
                                 //add value to the progress bar,
                                 setState(() {
-                                  updateValue += 180;
+                                  // getData();
+                                  consumed += 180;
                                 });
-                                updateUser(updateValue: updateValue);
+                                updateUser(updateValue: consumed);
                               },
                               child: SizedBox(
                                 width: 164 * fem,
@@ -269,9 +271,10 @@ class _Scene2State extends State<Scene2> {
                               onTap: () {
                                 //add value
                                 setState(() {
-                                  updateValue += 500;
+                                  // getData();
+                                  consumed += 500;
                                 });
-                                updateUser(updateValue: updateValue);
+                                updateUser(updateValue: consumed);
                                 getData();
                               },
                               child: SizedBox(
@@ -297,9 +300,10 @@ class _Scene2State extends State<Scene2> {
                               onTap: () {
                                 //add value
                                 setState(() {
-                                  updateValue += 250;
+                                  // getData();
+                                  consumed += 250;
                                 });
-                                updateUser(updateValue: updateValue);
+                                updateUser(updateValue: consumed);
                                 getData();
                               },
                               child: SizedBox(
@@ -325,9 +329,10 @@ class _Scene2State extends State<Scene2> {
                               onTap: () {
                                 //add value
                                 setState(() {
-                                  updateValue += 750;
+                                  // getData();
+                                  consumed += 750;
                                 });
-                                updateUser(updateValue: updateValue);
+                                updateUser(updateValue: consumed);
                                 getData();
                               },
                               child: SizedBox(
@@ -367,9 +372,10 @@ class _Scene2State extends State<Scene2> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 180;
+                                            // getData();
+                                            consumed += 180;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                         splashColor: Colors.blue,
@@ -473,9 +479,10 @@ class _Scene2State extends State<Scene2> {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 500;
+                                            // getData();
+                                            consumed += 500;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                       ),
@@ -493,9 +500,10 @@ class _Scene2State extends State<Scene2> {
                                       InkWell(
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 250;
+                                            // getData();
+                                            consumed += 250;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                         splashColor: Colors.blue.shade900,
@@ -523,9 +531,10 @@ class _Scene2State extends State<Scene2> {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 750;
+                                            // getData();
+                                            consumed += 750;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                       ),
@@ -562,9 +571,10 @@ class _Scene2State extends State<Scene2> {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 250;
+                                            // getData();
+                                            consumed += 250;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                       ),
@@ -586,9 +596,10 @@ class _Scene2State extends State<Scene2> {
                                         ),
                                         onTap: () {
                                           setState(() {
-                                            updateValue += 750;
+                                            // getData();
+                                            consumed += 750;
                                           });
-                                          updateUser(updateValue: updateValue);
+                                          updateUser(updateValue: consumed);
                                           getData();
                                         },
                                       ),
@@ -602,25 +613,6 @@ class _Scene2State extends State<Scene2> {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   // frame10gkK (1:182)
-                  //   margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0.59*fem, 0*fem),
-                  //   child: TextButton(
-                  //     onPressed: () {},
-                  //     style: TextButton.styleFrom (
-                  //       padding: EdgeInsets.zero,
-                  //     ),
-                  //     child: Container(
-                  //       width: 305.41*fem,
-                  //       height: 59*fem,
-                  //       child: Image.asset(
-                  //         'assets/page-1/images/frame-10-VQX.png',
-                  //         width: 305.41*fem,
-                  //         height: 59*fem,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -636,9 +628,6 @@ class _Scene2State extends State<Scene2> {
         .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
         .update({'consumed': updateValue})
         .then((value) {
-      // setState(() {
-      //   getData();
-      // });
     }).catchError((error) => print("Failed to update user: $error"));
 
 

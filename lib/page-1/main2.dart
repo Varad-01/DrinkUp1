@@ -45,7 +45,7 @@ class _main2State extends State<main2> {
                 _currentIndex = index;
               });
             },
-            tabs: [
+            tabs: const [
               GButton(
                 icon: Icons.home
               ),

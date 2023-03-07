@@ -91,7 +91,7 @@ class _Scene3State extends State<Scene3> {
                     return null;
                   },
                   decoration: const InputDecoration(
-                    hintText: 'Enter some text',
+                    hintText: 'Enter drinking target',
                   ),
                 ),
               ],
@@ -285,7 +285,12 @@ class _Scene3State extends State<Scene3> {
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
                           },
-                          child: const Text("Sign Out")),
+                          child: const Text("Sign Out",
+                          style: TextStyle(
+                            color: Colors.red,
+                            decoration: TextDecoration.underline,
+                          ),
+                            )),
                     ],
                   ),
                 ),

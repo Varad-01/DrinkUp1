@@ -53,11 +53,17 @@ dependencies:
   timezone: ^0.9.1
   lottie: ^2.2.0
   notification_permissions: ^0.6.1
+  flutter_launcher_icons: ^0.12.0
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/page-1/images/notification_icon.png"
+  min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

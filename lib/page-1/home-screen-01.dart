@@ -25,10 +25,12 @@ class _SceneState extends State<Scene> {
   }
 
   int consumed=0;
+  int remainWater=0;
   Future getData() async{
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
         consumed=value['consumed'];
+        remainWater=value['consumptionTarget'];
       });
     });
     print("Fetched Data Successfully");
@@ -57,69 +59,72 @@ class _SceneState extends State<Scene> {
               children: [
                 Container(
                   // autogroupnjqvdUP (Vx2MxBYGGapQT6sKm9njqV)
-                  margin: EdgeInsets.fromLTRB(106*fem, 0*fem, 105*fem, 151*fem),
+                  margin: EdgeInsets.fromLTRB(106*fem, 0*fem, 60*fem, 151*fem),
                   width: double.infinity,
                   height: 116*fem,
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        // drinkindicator675 (1:15)
-                        left: 21*fem,
-                        top: 0*fem,
-                        child: Container(
-                          width: 219*fem,
-                          height: 104*fem,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                // jvj (1:16)
-                                '$consumed',
-                                style: SafeGoogleFont (
-                                  'MuseoModerno',
-                                  fontSize: 70*ffem,
-                                  fontWeight: FontWeight.w300,
-                                  height: 1.59*ffem/fem,
-                                  color: const Color(0xff0091ff),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Stack(
+                      children: [
+                        Center(
+                          // drinkindicator675 (1:15)
+                          // left: 21*fem,
+                          // top: 0*fem,
+                          child: Container(
+                            // width: 219*fem,
+                            // height: 104*fem,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  // jvj (1:16)
+                                  '$consumed',
+                                  style: SafeGoogleFont (
+                                    'MuseoModerno',
+                                    fontSize: 70*ffem,
+                                    fontWeight: FontWeight.w300,
+                                    height: 1.59*ffem/fem,
+                                    color: const Color(0xff0091ff),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                // mlRwy (1:17)
-                                'ml',
-                                style: SafeGoogleFont (
-                                  'MuseoModerno',
-                                  fontSize: 65*ffem,
-                                  fontWeight: FontWeight.w300,
-                                  height: 1.59*ffem/fem,
-                                  color: const Color(0xff0091ff),
+                                Text(
+                                  // mlRwy (1:17)
+                                  'ml',
+                                  style: SafeGoogleFont (
+                                    'MuseoModerno',
+                                    fontSize: 65*ffem,
+                                    fontWeight: FontWeight.w300,
+                                    height: 1.59*ffem/fem,
+                                    color: const Color(0xff0091ff),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        // remaining1140mlwvK (1:22)
-                        left: 37*fem,
-                        top: 90*fem,
-                        child: Align(
-                          child: SizedBox(
-                            width: 145*fem,
-                            height: 26*fem,
-                            child: Text(
-                              'Remaining 1140 ml',
-                              style: SafeGoogleFont (
-                                'MuseoModerno',
-                                fontSize: 16*ffem,
-                                fontWeight: FontWeight.w300,
-                                height: 1.59*ffem/fem,
-                                color: const Color(0xff000000),
+                        Positioned(
+                          // remaining1140mlwvK (1:22)
+                          left: 37*fem,
+                          top: 90*fem,
+                          child: Align(
+                            child: SizedBox(
+                              width: 145*fem,
+                              height: 26*fem,
+                              child: Text(
+                                "Remaining $remainWater"+"ml",
+                                style: SafeGoogleFont (
+                                  'MuseoModerno',
+                                  fontSize: 16*ffem,
+                                  fontWeight: FontWeight.w300,
+                                  height: 1.59*ffem/fem,
+                                  color: const Color(0xff000000),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -201,6 +206,66 @@ class _SceneState extends State<Scene> {
                       // ),
 
                       //till here
+                      Positioned(
+                        // bluewaterdropVPR (1:18)
+                        left: 22.0000915527*fem,
+                        top: 0.0000228882*fem,
+                        child: Align(
+                          child: SizedBox(
+                            width: 35.67*fem,
+                            height: 43.68*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        // bluewaterdrop9ym (1:19)
+                        left: 374*fem,
+                        top: 0*fem,
+                        child: Align(
+                          child: SizedBox(
+                            width: 25.11*fem,
+                            height: 29.58*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-Edh.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        // bluewaterdropEEX (1:20)
+                        left: 370*fem,
+                        top: 101.9999303818*fem,
+                        child: Align(
+                          child: SizedBox(
+                            width: 38*fem,
+                            height: 44.77*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-i8K.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        // bluewaterdropiQb (1:21)
+                        left: 19.5105743408*fem,
+                        top: 116.0812189579*fem,
+                        child: Align(
+                          child: SizedBox(
+                            width: 40.77*fem,
+                            height: 40*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-Ww5.png',
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
 
                     ],
                   ),
