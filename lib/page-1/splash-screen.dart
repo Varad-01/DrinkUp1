@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -9,20 +8,31 @@ class Splash extends StatefulWidget {
   State<Splash> createState() => _SplashState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
+  AnimationController? _controller;
+  Animation<double>? _opacityAnimation;
+
   @override
   void initState() {
     super.initState();
     startTimer();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    _opacityAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(_controller!);
   }
 
   startTimer() {
-    var duration = const Duration(seconds: 4);
-    return Timer(duration, route);
-  }
-
-  route() {
-    Navigator.pushReplacementNamed(context, '/snapshott');
+    var duration = const Duration(milliseconds: 3000);
+    return Timer(duration, () {
+      _controller!.forward().whenComplete(() {
+        Navigator.pushReplacementNamed(context, '/snapshott');
+      });
+    });
   }
 
   @override
@@ -35,24 +45,26 @@ class _SplashState extends State<Splash> {
 
   Widget content() {
     return Center(
-      child: Column(
-        children: [
-          Expanded(
-            child: Image.asset(
-              'assets/page-1/images/App name.png',
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
+      child: FadeTransition(
+        opacity: _opacityAnimation!,
+        child: Column(
+          children: [
+            Expanded(
+              child: Image.asset(
+                'assets/page-1/images/water-meter-fill.gif',
+                width: 300,
+                height: 300,
+              ),
             ),
-          ),
-          Container(
-            height: 500,
-            width: 500,
-            child: Lottie.network(
-              'https://assets10.lottiefiles.com/packages/lf20_fjwc7dtd.json',
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
   }
 }
