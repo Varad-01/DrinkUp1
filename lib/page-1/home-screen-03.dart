@@ -82,11 +82,19 @@ class _Scene3State extends State<Scene3> {
                   autovalidateMode:
                   AutovalidateMode.onUserInteraction,
                   validator: (value) {
-                    RegExp regExp = RegExp("^([2-9]\d{3}|[1-9]\d{4,})");
                     if (value!.isEmpty) {
                       return 'Please enter a daily consumption limit';
-                    } else if (!regExp.hasMatch(value)) {
-                      return 'Please enter value greater than 2000 ml';
+                    } else {
+                      int intValue = int.parse(value);
+                      if (intValue == null) {
+                        return 'Please enter a valid number';
+                      }
+                      else if (intValue < 2000) {
+                        return 'Please enter value greater than 1999 ml';
+                      }
+                      else if (intValue >= 10000) {
+                        return 'Please enter value less than 10000 ml';
+                      }
                     }
                     return null;
                   },

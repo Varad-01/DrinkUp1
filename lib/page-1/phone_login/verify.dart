@@ -165,9 +165,9 @@ class _VerifyState extends State<Verify> {
 
     final json = {
       'phone': FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
-      'consumed':'0',
+      'consumed':0,
       'notification': false,
-      'consumptionTarget':'1140',
+      'consumptionTarget':2000,
       'Time' : DateTime.now(),
     };
     try {

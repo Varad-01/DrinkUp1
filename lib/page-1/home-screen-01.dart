@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'dart:ui';
 import 'dart:math';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
@@ -20,6 +21,7 @@ class _SceneState extends State<Scene> {
   List<String> docIDs = [];
 
   void initState() {
+    print("called init");
     super.initState();
     getData();
   }
@@ -27,18 +29,19 @@ class _SceneState extends State<Scene> {
   int consumed=0;
   int remainWater=0;
   Future getData() async{
+    print("getData() func is called");
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
         consumed=value['consumed'];
         remainWater=value['consumptionTarget'];
       });
-    });
-    print("Fetched Data Successfully");
-
+    }).catchError((error) => print("Failed to load users data: $error"));
   }
+
 
   @override
   Widget build(BuildContext context) {
+    print(remainWater);
     double baseWidth = 430;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
@@ -59,74 +62,40 @@ class _SceneState extends State<Scene> {
               children: [
                 Container(
                   // autogroupnjqvdUP (Vx2MxBYGGapQT6sKm9njqV)
-                  margin: EdgeInsets.fromLTRB(106*fem, 0*fem, 60*fem, 151*fem),
+                  margin: EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 135*fem),
                   width: double.infinity,
-                  height: 116*fem,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Stack(
-                      children: [
-                        Center(
-                          // drinkindicator675 (1:15)
-                          // left: 21*fem,
-                          // top: 0*fem,
-                          child: Container(
-                            // width: 219*fem,
-                            // height: 104*fem,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  // jvj (1:16)
-                                  '$consumed',
-                                  style: SafeGoogleFont (
-                                    'MuseoModerno',
-                                    fontSize: 70*ffem,
-                                    fontWeight: FontWeight.w300,
-                                    height: 1.59*ffem/fem,
-                                    color: const Color(0xff0091ff),
-                                  ),
-                                ),
-                                Text(
-                                  // mlRwy (1:17)
-                                  'ml',
-                                  style: SafeGoogleFont (
-                                    'MuseoModerno',
-                                    fontSize: 65*ffem,
-                                    fontWeight: FontWeight.w300,
-                                    height: 1.59*ffem/fem,
-                                    color: const Color(0xff0091ff),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                  // color: Colors.yellow,
+                  // height: 116*fem,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        // jvj (1:16)
+                        "$consumed"+"ml",
+                        style: SafeGoogleFont (
+                          'MuseoModerno',
+                          fontSize: 70*ffem,
+                          fontWeight: FontWeight.w300,
+                          // height: 1.59*ffem/fem,
+                          color: const Color(0xff0091ff),
                         ),
-                        Positioned(
-                          // remaining1140mlwvK (1:22)
-                          left: 37*fem,
-                          top: 90*fem,
-                          child: Align(
-                            child: SizedBox(
-                              width: 145*fem,
-                              height: 26*fem,
-                              child: Text(
-                                "Remaining $remainWater"+"ml",
-                                style: SafeGoogleFont (
-                                  'MuseoModerno',
-                                  fontSize: 16*ffem,
-                                  fontWeight: FontWeight.w300,
-                                  height: 1.59*ffem/fem,
-                                  color: const Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                          ),
+                      ),
+                      Text(
+                        "Remaining $remainWater ml",
+                        style: SafeGoogleFont (
+                          'MuseoModerno',
+                          fontSize: 16*ffem,
+                          fontWeight: FontWeight.w300,
+                          // height: 1.59*ffem/fem,
+                          color: const Color(0xff000000),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
+
+
+
                 Container(
                   // autogroupmjyuPGX (Vx2NGkqeYv1dmAfadVMjyu)
                   width: double.infinity,
@@ -153,14 +122,14 @@ class _SceneState extends State<Scene> {
                         config: CustomConfig(
                             gradients: [
                               [
-                                Colors.blue.withOpacity(0.8),
+                                Colors.blue.withOpacity(0.3),
                                 // Colors.blue.shade900.withOpacity(0.7)//2
                                 const Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
                               ],
                               [
                                 Colors.blue.withOpacity(0.8),
                                 // Colors.blue.shade900.withOpacity(0.7) //1
-                                const Color.fromRGBO(23, 155, 255,1).withOpacity(0.9)
+                                const Color.fromRGBO(23, 155, 255,1).withOpacity(0.7)
                               ]
                             ],
                             gradientBegin: Alignment.centerLeft,
@@ -171,41 +140,6 @@ class _SceneState extends State<Scene> {
                             blur: const MaskFilter.blur(BlurStyle.solid, 40)),
                         size: const Size(double.infinity, double.infinity),
                       ),
-                      //remove frm here to
-                      // Positioned(
-                      //   // vector1m47 (1:13)
-                      //   left: 0*fem,
-                      //   top: 200.9999237061*fem,
-                      //   child: Align(
-                      //     child: SizedBox(
-                      //       width: 433*fem,
-                      //       height: 46.03*fem,
-                      //       child: Image.asset(
-                      //         'assets/page-1/images/vector-1.png',
-                      //         width: 433*fem,
-                      //         height: 46.03*fem,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      // Positioned(
-                      //   // vector2qZm (1:14)
-                      //   left: 0*fem,
-                      //   top: 208.9999847412*fem,
-                      //   child: Align(
-                      //     child: SizedBox(
-                      //       width: 443*fem,
-                      //       height: 75.5*fem,
-                      //       child: Image.asset(
-                      //         'assets/page-1/images/vector-2.png',
-                      //         width: 443*fem,
-                      //         height: 75.5*fem,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-
-                      //till here
                       Positioned(
                         left: 40.0000915527*fem,
                         top: 19.0000228882*fem,
@@ -231,15 +165,15 @@ class _SceneState extends State<Scene> {
                         child: Align(
                           child: Transform.rotate(
                             angle: 215 * pi / 180,
-                          child: SizedBox(
-                            width: 50.11*fem,
-                            height: 54.58*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Edh.png',
-                              fit: BoxFit.contain,
+                            child: SizedBox(
+                              width: 50.11*fem,
+                              height: 54.58*fem,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop-Edh.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
-                        ),),
+                          ),),
                       ),
                       Positioned(
                         // bluewaterdropEEX (1:20)
@@ -248,15 +182,15 @@ class _SceneState extends State<Scene> {
                         child: Align(
                           child: Transform.rotate(
                             angle: 232 * pi / 180,
-                          child: SizedBox(
-                            width: 48*fem,
-                            height: 54.77*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-i8K.png',
-                              fit: BoxFit.contain,
+                            child: SizedBox(
+                              width: 48*fem,
+                              height: 54.77*fem,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop-i8K.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
-                        ),),
+                          ),),
                       ),
                       Positioned(
                         // bluewaterdropiQb (1:21)
@@ -265,17 +199,16 @@ class _SceneState extends State<Scene> {
                         child: Align(
                           child: Transform.rotate(
                             angle: 131 * pi / 180,
-                          child: SizedBox(
-                            width: 51.77*fem,
-                            height: 51*fem,
-                            child: Image.asset(
-                              'assets/page-1/images/blue-water-drop-Ww5.png',
-                              fit: BoxFit.contain,
+                            child: SizedBox(
+                              width: 51.77*fem,
+                              height: 51*fem,
+                              child: Image.asset(
+                                'assets/page-1/images/blue-water-drop-Ww5.png',
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
-                        ),),
+                          ),),
                       ),
-
                     ],
                   ),
                 ),

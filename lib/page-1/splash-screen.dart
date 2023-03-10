@@ -27,7 +27,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   }
 
   startTimer() {
-    var duration = const Duration(milliseconds: 3000);
+    var duration = const Duration(milliseconds: 2600);
     return Timer(duration, () {
       _controller!.forward().whenComplete(() {
         Navigator.pushReplacementNamed(context, '/snapshott');
