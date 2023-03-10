@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'dart:ui';
+import 'dart:math';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
-
-
 
 class Scene extends StatefulWidget {
 
@@ -210,16 +207,14 @@ class _SceneState extends State<Scene> {
 
                       //till here
                       Positioned(
-                        // bluewaterdropVPR (1:18)
-                        left: 22.0000915527*fem,
-                        top: 0.0000228882*fem,
+                        left: 40.0000915527*fem,
+                        top: 19.0000228882*fem,
                         child: Align(
-                          child: SizedBox(
-                            width: 35.67*fem,
-                            height: 43.68*fem,
-                            child: Transform.rotate(
-                              // apply transform to flip image horizontally
-                              angle: math.pi,
+                          child: Transform.rotate(
+                            angle: 142 * pi / 180, // 45 degrees in radians
+                            child: SizedBox(
+                              width: 45.67*fem,
+                              height: 53.68*fem,
                               child: Image.asset(
                                 'assets/page-1/images/blue-water-drop.png',
                                 fit: BoxFit.contain,
@@ -228,62 +223,57 @@ class _SceneState extends State<Scene> {
                           ),
                         ),
                       ),
+
                       Positioned(
                         // bluewaterdrop9ym (1:19)
-                        left: 374*fem,
-                        top: 0*fem,
+                        left: 344*fem,
+                        top: 23*fem,
                         child: Align(
+                          child: Transform.rotate(
+                            angle: 215 * pi / 180,
                           child: SizedBox(
-                            width: 25.11*fem,
-                            height: 29.58*fem,
-                            child: Transform.rotate(
-                              // apply transform to flip image horizontally
-                              angle: math.pi,
-                              child: Image.asset(
-                                'assets/page-1/images/blue-water-drop.png',
-                                fit: BoxFit.contain,
-                              ),
+                            width: 50.11*fem,
+                            height: 54.58*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-Edh.png',
+                              fit: BoxFit.contain,
                             ),
                           ),
-                        ),
+                        ),),
                       ),
                       Positioned(
                         // bluewaterdropEEX (1:20)
-                        left: 370*fem,
-                        top: 101.9999303818*fem,
+                        left: 363*fem,
+                        top: 103.9999303818*fem,
                         child: Align(
+                          child: Transform.rotate(
+                            angle: 232 * pi / 180,
                           child: SizedBox(
-                            width: 38*fem,
-                            height: 44.77*fem,
-                            child: Transform.rotate(
-                              // apply transform to flip image horizontally
-                              angle: math.pi,
-                              child: Image.asset(
-                                'assets/page-1/images/blue-water-drop.png',
-                                fit: BoxFit.contain,
-                              ),
+                            width: 48*fem,
+                            height: 54.77*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-i8K.png',
+                              fit: BoxFit.contain,
                             ),
                           ),
-                        ),
+                        ),),
                       ),
                       Positioned(
                         // bluewaterdropiQb (1:21)
-                        left: 19.5105743408*fem,
+                        left: 27.5105743408*fem,
                         top: 116.0812189579*fem,
                         child: Align(
+                          child: Transform.rotate(
+                            angle: 131 * pi / 180,
                           child: SizedBox(
-                            width: 40.77*fem,
-                            height: 40*fem,
-                            child: Transform.rotate(
-                              // apply transform to flip image horizontally
-                              angle: math.pi,
-                              child: Image.asset(
-                                'assets/page-1/images/blue-water-drop.png',
-                                fit: BoxFit.contain,
-                              ),
+                            width: 51.77*fem,
+                            height: 51*fem,
+                            child: Image.asset(
+                              'assets/page-1/images/blue-water-drop-Ww5.png',
+                              fit: BoxFit.contain,
                             ),
                           ),
-                        ),
+                        ),),
                       ),
 
                     ],
