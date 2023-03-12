@@ -33,7 +33,10 @@ class _SceneState extends State<Scene> {
     await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
       setState(() {
         consumed=value['consumed'];
-        remainWater=value['consumptionTarget'];
+        remainWater=value['consumptionTarget'] - consumed;
+        if(remainWater<0){
+          remainWater=0;
+        }
       });
     }).catchError((error) => print("Failed to load users data: $error"));
   }
