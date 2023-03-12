@@ -22,7 +22,8 @@ class _Scene2State extends State<Scene2> {
 
   int consumed=0;
   double progressBarValue=0;
-  String progressBarText="0%";
+
+  String progressBarText="";
   int remainWater=0;
 
   Future getData() async{
@@ -30,82 +31,17 @@ class _Scene2State extends State<Scene2> {
       setState(() {
         consumed=value['consumed'];
         remainWater=value['consumptionTarget'];
+        //consumed=300, consumptionTarget=200,
+        //Then progressBarValue=0.15% => 15%
+        progressBarValue=consumed/remainWater;
+        //converting 0.15 to 15%
+        progressBarText=(progressBarValue*100).round().toString()+"%";
+        print(progressBarText);
       });
     });
     // int currentValue=consumed;
-    if(consumed>114 && consumed<228)
-    {
-      setState(() {
-        progressBarValue=0.1;
-        progressBarText="10%";
-      });
-    }
-    else if(consumed>228 && consumed<342)
-    {
-      setState(() {
-        progressBarValue=0.2;
-        progressBarText="20%";
-      });
-    }
-    else if(consumed>342 && consumed<456)
-    {
-      setState(() {
-        progressBarValue=0.3;
-        progressBarText="30%";
-      });
-    }
-    else if(consumed>456 && consumed<570)
-    {
-      setState(() {
-        progressBarValue=0.4;
-        progressBarText="40%";
-      });
-    }
-    else if(consumed>570 && consumed<684)
-    {
-      setState(() {
-        progressBarValue=0.5;
-        progressBarText="50%";
-      });
-    }
-    else if(consumed>684 && consumed<798)
-    {
-      setState(() {
-        progressBarValue=0.6;
-        progressBarText="60%";
-      });
-    }
-    else if(consumed>798 && consumed<912)
-    {
-      setState(() {
-        progressBarValue=0.7;
-        progressBarText="70%";
-      });
-    }
-    else if(consumed>912 && consumed<1026)
-    {
-      setState(() {
-        progressBarValue=0.8;
-        progressBarText="80%";
-      });
-    }
-    else if(consumed>1024 && consumed<1140)
-    {
-      setState(() {
-        progressBarValue=0.9;
-        progressBarText="90%";
-      });
-    }
-    else if(consumed>1140)
-    {
-      setState(() {
-        progressBarValue=1.0;
-        progressBarText="100%";
-      });
-    }
-    return consumed;
-
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -629,7 +565,5 @@ class _Scene2State extends State<Scene2> {
         .update({'consumed': updateValue})
         .then((value) {
     }).catchError((error) => print("Failed to update user: $error"));
-
-
   }
 }
