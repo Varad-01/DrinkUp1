@@ -34,6 +34,9 @@ class _Scene2State extends State<Scene2> {
         //consumed=300, consumptionTarget=200,
         //Then progressBarValue=0.15% => 15%
         progressBarValue=consumed/remainWater;
+        if(progressBarValue>1.0){
+          progressBarValue=1.0;
+        }
         //converting 0.15 to 15%
         progressBarText=(progressBarValue*100).round().toString()+"%";
         print(progressBarText);
