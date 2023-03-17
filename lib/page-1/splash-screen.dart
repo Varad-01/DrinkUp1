@@ -32,7 +32,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     ).animate(_controller!);
     setTime();
     getData();
-    print(savedDate.day);
+    print("Saved day"+savedDate.day.toString());
     // print(time0);
     print(DateTime.now().day);
     if(loading)
@@ -41,6 +41,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
           .now()
           .day != savedDate.day)
       {
+        print("User Updated");
         updateUser();
       }
     }
@@ -58,6 +59,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     if(savedDate!=DateTime.now())
     {
       loading = true;
+      print("Loading is set true");
       setState(() {
 
       });
