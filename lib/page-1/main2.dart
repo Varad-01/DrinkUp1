@@ -37,7 +37,7 @@ class _main2State extends State<main2> {
             iconSize: 28,
             padding: EdgeInsets.all(12.0),
             duration: Duration(milliseconds: 800),
-            tabBackgroundColor: Colors.blue.shade800,
+            tabBackgroundColor: Colors.blue.shade500,
             backgroundColor: Colors.transparent,
             selectedIndex: _currentIndex,
             onTabChange: (index) {
