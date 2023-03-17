@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -11,6 +13,10 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _opacityAnimation;
+  DateTime savedDate = DateTime.now();
+  bool loading = false;
+  DateTime? savedDate1;
+  String time0 = "";
 
   @override
   void initState() {
@@ -24,7 +30,54 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       begin: 1.0,
       end: 0.0,
     ).animate(_controller!);
+    setTime();
+    getData();
+    print(savedDate.day);
+    // print(time0);
+    print(DateTime.now().day);
+    if(loading)
+    {
+      if (DateTime
+          .now()
+          .day != savedDate.day)
+      {
+        updateUser();
+      }
+    }
   }
+
+
+  Future getData() async{
+    print("getData() func is called");
+    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
+      setState(() {
+        time0=value['Time1'];
+        savedDate = DateTime.parse(time0);
+      });
+    }).catchError((error) => print("Failed to load users data: $error"));
+    if(savedDate!=DateTime.now())
+    {
+      loading = true;
+      setState(() {
+
+      });
+    }
+  }
+
+    Future<void> setTime() {
+      CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+      String time0 = DateTime.now().add(Duration(days: 12)).toString();
+
+      return docUser
+          .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
+          .update({'Time1': time0})
+          .then((value) {
+            setState(() {
+
+            });
+      })
+          .catchError((error) => print("Failed to update user: $error"));
+    }
 
   startTimer() {
     var duration = const Duration(milliseconds: 2600);
@@ -67,4 +120,17 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
     _controller!.dispose();
     super.dispose();
   }
+
+  Future<void> updateUser() {
+    CollectionReference docUser = FirebaseFirestore.instance.collection('users');
+
+    return docUser
+        .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
+        .update({'consumed': 0})
+        .then((value) {
+      print("User Updated");
+    })
+        .catchError((error) => print("Failed to update user: $error"));
+  }
 }
+
