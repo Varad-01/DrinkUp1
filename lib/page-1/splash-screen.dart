@@ -13,10 +13,7 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _opacityAnimation;
-  DateTime savedDate = DateTime.now();
-  bool loading = false;
-  DateTime? savedDate1;
-  String time0 = "";
+  DateTime? savedDate;
 
   @override
   void initState() {
@@ -30,54 +27,26 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
       begin: 1.0,
       end: 0.0,
     ).animate(_controller!);
-    setTime();
-    getData();
-    print(savedDate.day);
-    // print(time0);
-    print(DateTime.now().day);
-    if(loading)
-    {
-      if (DateTime
-          .now()
-          .day != savedDate.day)
-      {
+    getData().then((_) {
+      if (savedDate != null && savedDate?.day != DateTime.now().day) {
         updateUser();
       }
-    }
+    });
   }
 
 
-  Future getData() async{
+  Future<void> getData() async {
     print("getData() func is called");
-    await FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString()).get().then((value) async{
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
+        .get()
+        .then((value) {
       setState(() {
-        time0=value['Time1'];
-        savedDate = DateTime.parse(time0);
+        savedDate = value['Time'].toDate();
       });
     }).catchError((error) => print("Failed to load users data: $error"));
-    if(savedDate!=DateTime.now())
-    {
-      loading = true;
-      setState(() {
-
-      });
-    }
   }
-
-    Future<void> setTime() {
-      CollectionReference docUser = FirebaseFirestore.instance.collection('users');
-      String time0 = DateTime.now().add(Duration(days: 12)).toString();
-
-      return docUser
-          .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
-          .update({'Time1': time0})
-          .then((value) {
-            setState(() {
-
-            });
-      })
-          .catchError((error) => print("Failed to update user: $error"));
-    }
 
   startTimer() {
     var duration = const Duration(milliseconds: 2600);

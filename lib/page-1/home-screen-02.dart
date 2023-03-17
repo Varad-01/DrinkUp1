@@ -565,7 +565,7 @@ class _Scene2State extends State<Scene2> {
 
     return docUser
         .doc(FirebaseAuth.instance.currentUser!.phoneNumber.toString())
-        .update({'consumed': updateValue})
+        .update({'consumed': updateValue,'Time' : DateTime.now()})
         .then((value) {
     }).catchError((error) => print(" Failed to update user: $error"));
   }
