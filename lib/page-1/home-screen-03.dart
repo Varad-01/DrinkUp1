@@ -314,7 +314,8 @@ class _Scene3State extends State<Scene3> {
                                   fontSize: 16*ffem,
                                   fontWeight: FontWeight.w400,
                                   // height: 1.2575*ffem/fem,
-                                  color: const Color(0xff0a0f25),
+                                  color: const Color(0xff179bff),
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                               onTap: () {
