@@ -377,7 +377,7 @@ class _Scene2State extends State<Scene2> {
                                                 top: 0 * fem,
                                                 child: Align(
                                                   child: SizedBox(
-                                                    width: 49.09 * fem,
+                                                    width: 35.09 * fem,
                                                     height: 49.09 * fem,
                                                     child: Image.asset(
                                                       'assets/page-1/images/bottle-of-water.png',

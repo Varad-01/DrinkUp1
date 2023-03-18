@@ -79,6 +79,7 @@ class _Scene3State extends State<Scene3> {
                 TextFormField(
                   keyboardType: TextInputType.number,
                   controller: _textEditingController,
+                  maxLength: 4,
                   autovalidateMode:
                   AutovalidateMode.onUserInteraction,
                   validator: (value) {
@@ -113,19 +114,25 @@ class _Scene3State extends State<Scene3> {
                 child: Text('CANCEL'),
               ),
               TextButton(
-                onPressed: ()  {
+                onPressed: () {
                   // Perform action with the text entered in the text field
                   String enteredText = _textEditingController.text;
-                  dailyConsumption = int.parse(enteredText);
-                  print('Entered Value: $enteredText');
-
-                  updateUser(switchValue: switchValue,dailyConsumption: dailyConsumption);
-
-                  if(dailyConsumption>=2000 && dailyConsumption<10000) {
+                  int? intValue = int.tryParse(enteredText);
+                  if (intValue != null && intValue >= 2000 && intValue < 10000) {
+                    dailyConsumption = intValue;
+                    print('Entered Value: $enteredText');
+                    updateUser(switchValue: switchValue, dailyConsumption: dailyConsumption);
                     getData();
                     Navigator.of(context).pop();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Please enter a value between 2000 and 9999'),
+                      ),
+                    );
                   }
                 },
+
                 child: Text('OK'),
               ),
             ],
@@ -182,7 +189,7 @@ class _Scene3State extends State<Scene3> {
                             'Reminders',
                             style: SafeGoogleFont (
                               'Satoshi',
-                              fontSize: 20*ffem,
+                              fontSize: 22*ffem,
                               fontWeight: FontWeight.w400,
                               height: 1.2575*ffem/fem,
                               color: const Color(0xff0a0f25),
@@ -294,7 +301,7 @@ class _Scene3State extends State<Scene3> {
                             'Daily consumption',
                             style: SafeGoogleFont (
                               'Satoshi',
-                              fontSize: 20*ffem,
+                              fontSize: 22*ffem,
                               fontWeight: FontWeight.w400,
                               // height: 1.2575*ffem/fem,
                               color: const Color(0xff0a0f25),
@@ -303,7 +310,7 @@ class _Scene3State extends State<Scene3> {
                         ),
                         const Spacer(),
                         Container(
-                          width: 50,
+                          width: 60,
                           height: 35,
                           child:  Expanded(
                             child: InkWell(
@@ -311,11 +318,11 @@ class _Scene3State extends State<Scene3> {
                                 '${dailyConsumption}ml',
                                 style: SafeGoogleFont (
                                   'Satoshi',
-                                  fontSize: 16*ffem,
-                                  fontWeight: FontWeight.w400,
+                                  fontSize: 18*ffem,
+                                  fontWeight: FontWeight.w700,
                                   // height: 1.2575*ffem/fem,
-                                  color: const Color(0xff179bff),
-                                  decoration: TextDecoration.underline,
+                                  color: const Color(0xff000000),
+                                  // decoration: TextDecoration.underline,
                                 ),
                               ),
                               onTap: () {
@@ -341,12 +348,17 @@ class _Scene3State extends State<Scene3> {
                             onPressed: () {
                               FirebaseAuth.instance.signOut();
                             },
-                            child: const Text("Sign Out",
-                              style: TextStyle(
-                                color: Colors.red,
-                                decoration: TextDecoration.underline,
-                              ),
-                            )),
+                          child: Text(
+                            'Sign Out',
+                            style: SafeGoogleFont (
+                              'Satoshi',
+                              fontSize: 22*ffem,
+                              fontWeight: FontWeight.w600,
+                              // height: 1.2575*ffem/fem,
+                              color:  Colors.red,
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
