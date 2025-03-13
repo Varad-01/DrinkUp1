@@ -21,3 +21,7 @@
 ![2](https://github.com/user-attachments/assets/8c00504d-a537-4df8-9b5a-514737b54e37)
 ![3](https://github.com/user-attachments/assets/1471086b-6672-428d-8ffc-c0ee0b89ab2f)
 ![4](https://github.com/user-attachments/assets/d94f42aa-9c22-4520-bd14-ed7c2ee32aec)
+
+## Contributors  
+- [Anish Mhatre](https://github.com/Coexo)  
+- [Varad Sankhe](https://github.com/Varad-01)  
